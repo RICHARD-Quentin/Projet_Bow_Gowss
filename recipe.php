@@ -69,7 +69,7 @@ $bdd = connexion::connexionBdd();
                 ?>
             </div>
         </div>
-        <input type="submit" value="Envoyer" class="inline-block mx-auto">
+        <input type="submit" value="Envoyer" class="inline-block">
 
     </form>
 
