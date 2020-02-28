@@ -62,7 +62,7 @@ $bdd = connexion::connexionBdd();
 
                     foreach ($nom as $name){
 
-                        echo '<div class="checkbox"><input type="checkbox" v-model="checked" value="' . $name->name . '"><label>' . $name->name . '</label>
+                        echo '<div id="checkbox"><input type="checkbox" v-model="checked" value="' . $name->name . '"><label>' . $name->name . '</label>
                                     <div v-show="checked"><label>Quantité en g</label><input type="text" class="border border-gray-500"></div></div>';
                     }
                 }
