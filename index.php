@@ -21,8 +21,9 @@ include("template/setup.php");
 
 
 <?php include("template/footer.php"); ?>
+<?php include("template/js.php"); ?>
 
 </body>
-<?php include("template/js.php"); ?>
+
 
 </html>
