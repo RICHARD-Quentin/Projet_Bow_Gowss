@@ -7,6 +7,7 @@ require('../lib/PHPMailer/src/PHPMailer.php');
 require('../lib/PHPMailer/src/OAuth.php');
 require('../lib/PHPMailer/src/Exception.php');
 
+require('../src/getCurrentURL.php');
 require_once('../lib/PHPMailer/composer/ClassLoader.php');
 
 
@@ -25,9 +26,9 @@ try {
     $mail->addAddress('ToMachin@gmail.com', 'Society');
 
     $mail->isHTML(true);
-
+    $lien = getCurrentURL();
     $mail->Subject = 'Email incoming FROM MailTrap ';
-    $mail->Body    = 'Hello User, <p>test mail sent through Mailtrap SMTP</p><br>Thank you';
+    $mail->Body    = "Hello User, <p>test mail sent through Mailtrap SMTP</p>". $lien ."<br><br>Thank you";
 
     if (!$mail->send()) {
         echo 'Message could not be sent.';
