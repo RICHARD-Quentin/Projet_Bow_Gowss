@@ -12,4 +12,5 @@ $content=$_POST['content'];
 #$id=$_SESSION['id'];
 $user_id=1;
 
+
 $classe->register($title, $content, $duree , $image, $persons, $isVegan, $user_id);

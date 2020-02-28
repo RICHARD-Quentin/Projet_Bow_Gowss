@@ -2,8 +2,6 @@
 include("template/setup.php");
 include_once ('class/connexion.php');
 $bdd = connexion::connexionBdd();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +59,8 @@ $bdd = connexion::connexionBdd();
                     $nom=$stmt->fetchAll(PDO::FETCH_CLASS);
 
                     foreach ($nom as $name){
-
                         echo '<div id="checkbox"><input type="checkbox" v-model="checked" value="' . $name->name . '"><label>' . $name->name . '</label>
-                                    <div v-show="checked"><label>Quantité en g</label><input type="text" class="border border-gray-500"></div></div>';
+                              <div v-show="checked"><label>Quantité en g</label><input type="text" class="border border-gray-500"></div></div>';
                     }
                 }
                 ?>
