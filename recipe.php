@@ -1,5 +1,5 @@
 <?php
-include("setup.php");
+include("template/setup.php");
 include_once ('class/connexion.php');
 $bdd = connexion::connexionBdd();
 
@@ -9,11 +9,11 @@ $bdd = connexion::connexionBdd();
 <!DOCTYPE html>
 
 <html lang="fr">
-<?php include("head.php"); ?>
+<?php include("template/head.php"); ?>
 
 <body>
-<?php include("nav.php"); ?>
-<?php include("hero.php"); ?>
+<?php include("template/nav.php"); ?>
+<?php include("template/hero.php"); ?>
 <main>
     <form action= "traitment/traitementRecipe.php" method="post">
         <div class="mx-auto border-gray-500 flex-row flex-wrap mx-auto">
@@ -62,14 +62,14 @@ $bdd = connexion::connexionBdd();
 
                     foreach ($nom as $name){
 
-                        echo '<div class="checkbox"><input type="checkbox" v-model="checked" value="' . $name->name . '"><label>' . $name->name . '</label>
+                        echo '<div id="checkbox"><input type="checkbox" v-model="checked" value="' . $name->name . '"><label>' . $name->name . '</label>
                                     <div v-show="checked"><label>Quantité en g</label><input type="text" class="border border-gray-500"></div></div>';
                     }
                 }
                 ?>
             </div>
         </div>
-        <input type="submit" value="Envoyer" class="inline-block mx-auto">
+        <input type="submit" value="Envoyer" class="inline-block">
 
     </form>
 
@@ -78,9 +78,9 @@ $bdd = connexion::connexionBdd();
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/script.js"></script>
 
-<?php include("footer.php"); ?>
+<?php include("template/footer.php"); ?>
 
 </body>
-<?php include("js.php"); ?>
+<?php include("template/js.php"); ?>
 
 </html>
