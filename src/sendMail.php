@@ -2,12 +2,12 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require('lib/PHPMailer/src/SMTP.php');
-require('lib/PHPMailer/src/PHPMailer.php');
-require('lib/PHPMailer/src/OAuth.php');
-require('lib/PHPMailer/src/Exception.php');
+require('../lib/PHPMailer/src/SMTP.php');
+require('../lib/PHPMailer/src/PHPMailer.php');
+require('../lib/PHPMailer/src/OAuth.php');
+require('../lib/PHPMailer/src/Exception.php');
 
-require_once('lib/PHPMailer/composer/ClassLoader.php');
+require_once('../lib/PHPMailer/composer/ClassLoader.php');
 
 
 
