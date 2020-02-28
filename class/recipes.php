@@ -3,6 +3,18 @@
 include_once ('connexion.php');
 class recipes
 {
+    public static function image($path,$file){
+        $i=1;
+        $imgDirectory='img';
+        $ext=pathinfo($file['name'],PATHINFO_EXTENSION);
+        while(file_exists("$path\\$imgDirectory\\image($i).$ext"))
+        {
+            $i++;
+        }
+        move_uploaded_file($file['tmp_name'],"$path\\$imgDirectory\\image($i).$ext");
+        $recipeImagePath="$imgDirectory/image($i).$ext";
+        return $recipeImagePath;
+    }
 
     public function register($title, $content, $duree, $image, $persons, $isVegan, $user_id)
     {
