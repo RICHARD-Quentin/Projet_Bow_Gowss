@@ -18,5 +18,4 @@ function getCurrentURL()
 }
 
 getCurrentURL();
-
 ?>
