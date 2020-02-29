@@ -13,7 +13,7 @@ $bdd = connexion::connexionBdd();
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
 <main>
-    <form action= "traitment/traitementRecipe.php" method="post">
+    <form action= "traitment/traitementRecipe.php" enctype="multipart/form-data" method="post">
         <div class="mx-auto border-gray-500 flex-row flex-wrap mx-auto">
 
             <div class="w-1/3 inline-block">
@@ -23,7 +23,7 @@ $bdd = connexion::connexionBdd();
                 </div>
                 <div class="mb-2">
                     <label class="w-1/3">Image</label>
-                    <input type="file" name="image" class="w-1/2 border rounded border-gray-500">
+                    <input type="file" name="myImage" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">
                     <label class="w-1/3">Durée</label>
@@ -42,37 +42,40 @@ $bdd = connexion::connexionBdd();
                     <textarea name="content" class="w-1/2 border rounded border-gray-500"></textarea>
                 </div>
             </div>
-            <div class="w-1/3 inline-block text-center">
-                <label>Ingredients</label>
-                <?php
-                $type = $bdd ->query("SELECT * FROM typeingredient");
-                $typ=$type->fetchAll(PDO::FETCH_CLASS);
+            <div id="ing" class="w-2/5 inline-block text-center">
+                <label>Ingredients</label><br>
+                <span id="addIngredientButton" class="border border-gray-500 rounded bg-gray-300">Ajouter un ingredient</span>
+                <ul class="ingredientList">
 
-                $stmt = $bdd -> prepare("SELECT * FROM ingredient WHERE typeId=:typ");
-
-                foreach ($typ as $tp){
-                    $typeIngredient=$tp->type;
-                    $idIngredient=$tp->id;
-                    echo '<h2>' .  $typeIngredient . '</h2>';
-
-                    $stmt->execute(array("typ"=>$idIngredient));
-                    $nom=$stmt->fetchAll(PDO::FETCH_CLASS);
-
-                    foreach ($nom as $name){
-                        echo '<div id="checkbox"><input type="checkbox" v-model="checked" value="' . $name->name . '"><label>' . $name->name . '</label>
-                              <div v-show="checked"><label>Quantité en g</label><input type="text" class="border border-gray-500"></div></div>';
-                    }
-                }
-                ?>
+                </ul>
             </div>
         </div>
-        <input type="submit" value="Envoyer" class="inline-block">
+        <input type="submit" name="submit"/ value="Envoyer" class="inline-block">
 
     </form>
-
+    <div class="hidden">
+        <li id="newIngredient" class="relative list-none">
+            <div>
+                <label>Ingredient :</label><input type="text" class="border border-gray-500" name="ing[]">
+                <label for="">Qté</label><input type="text" class="border border-gray-500" name="qte[]">
+                <span class="removeIngredientButton absolute top-0 right-10 bottom-0">
+                                    <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                </span>
+            </div>
+        </li>
+    </div>
 </main>
+<script>
+    $('#addIngredientButton').click(function(e){
+        var $clone=$('#newIngredient').clone();
+        $('#ing').append($clone);
+    });
+    $(document).on('click','.removeIngredientButton',function(e){
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        $(this).parent().remove();
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="js/script.js"></script>
 
 <?php include("template/footer.php"); ?>
