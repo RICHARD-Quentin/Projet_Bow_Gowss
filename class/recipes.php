@@ -16,7 +16,7 @@ class recipes
         return $recipeImagePath;
     }
 
-    public static function register($title, $content, $duree, $image, $persons, $isVegan, $user_id, $ingredient, $quantity)
+    public static function register($title, $content, $duree, $image, $persons, $isVegan, $user_id, $ingredient, $quantity, $step)
     {
 
         $bdd = connexion::connexionBdd();
@@ -37,6 +37,11 @@ class recipes
             'recipe'=>$id,
             'ingredient'=>$ingredient,
             'quantity'=>$quantity
+        ));
+        $stp = $bdd->prepare('INSERT INTO recipesteps(recipe, steps) VALUES (:recipe, :steps)');
+        $stp->execute(array(
+            'recipe'=>$id,
+            'steps'=>$step
         ));
         #header('index.php');
     }

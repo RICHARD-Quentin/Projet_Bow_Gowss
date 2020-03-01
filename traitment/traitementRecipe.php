@@ -10,6 +10,8 @@ $duree=$_POST['duree'];
 
 $ingredient=implode('_',$_POST['ing']);
 $quantity=implode('_',$_POST['qte']);
+$step=implode('_',$_POST['step']);
+
 
 if (isset($_POST['isVegan'])){
     $isVegan=1;
@@ -26,5 +28,5 @@ $content=$_POST['content'];
 #$id=$_SESSION['id'];
 $user_id=1;
 
-recipes::register($title, $content, $duree , $recipeImagePath, $persons, $isVegan, $user_id, $ingredient, $quantity);
+recipes::register($title, $content, $duree , $recipeImagePath, $persons, $isVegan, $user_id, $ingredient, $quantity, $step);
 
