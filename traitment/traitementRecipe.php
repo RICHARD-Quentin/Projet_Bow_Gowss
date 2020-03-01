@@ -1,11 +1,17 @@
 <?php
 
 include_once ('../class/recipes.php');
+include_once ('../class/connexion.php');
+
 $classe = new recipes;
 
 $title=$_POST['title'];
 $duree=$_POST['duree'];
-$image=1; /*$_POST['image'];*/
+
+$ingredient=implode('_',$_POST['ing']);
+$quantity=implode('_',$_POST['qte']);
+$step=implode('_',$_POST['step']);
+
 
 if (isset($_POST['isVegan'])){
     $isVegan=1;
@@ -13,9 +19,8 @@ if (isset($_POST['isVegan'])){
 else {
     $isVegan=0;
 }
-
-$path=__DIR__;
-$recipeImage=$_FILES['image'];
+$path="..\\";
+$recipeImage=$_FILES['myImage'];
 $recipeImagePath= recipes::image($path,$recipeImage);
 
 $persons=$_POST['persons'];
@@ -23,5 +28,5 @@ $content=$_POST['content'];
 #$id=$_SESSION['id'];
 $user_id=1;
 
+recipes::register($title, $content, $duree , $recipeImagePath, $persons, $isVegan, $user_id, $ingredient, $quantity, $step);
 
-$classe->register($title, $content, $duree , $recipeImagePath, $persons, $isVegan, $user_id);
