@@ -32,7 +32,7 @@ var_dump($list);
             <div class="px-6 py-4">
                 <div class="font-bold text-xl mb-2"><?php echo $lst->title ?></div>
                 <p class="text-gray-700 text-base">
-                    <?php echo $lst->content ?>
+                    <?php echo $lst->content;?>
                 </p>
             </div>
             <div class="px-6 py-4">

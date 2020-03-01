@@ -20,7 +20,7 @@ try {
     $mail->SMTPAuth = true;
     $mail->Username = "2af026b2ac86b4";
     $mail->Password = "21e246fe9ff2f0";
-    $mail->Port = 465;                    //SMTP port
+    $mail->Port = 465;                    //SMTP port (465 // 587 // 25)
 
     $mail->setFrom('fromTruc@gmail.com', 'Web Dev');
     $mail->addAddress('ToMachin@gmail.com', 'Society');
@@ -28,7 +28,7 @@ try {
     $mail->isHTML(true);
     $lien = getCurrentURL();
     $mail->Subject = 'Email incoming FROM MailTrap ';
-    $mail->Body    = "Hello User, <p>test mail sent through Mailtrap SMTP</p>". $lien ."<br><br>Thank you";
+    $mail->Body = "Hello User, <p>test mail sent through Mailtrap SMTP</p>". $lien ."<br><br>Thank you";
 
     if (!$mail->send()) {
         echo 'Message could not be sent.';
