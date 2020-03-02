@@ -4,7 +4,7 @@
     <a href="#" class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white p-2 mr-4">
         Nous contacter
     </a>
-    <a href="#" class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white p-2 mr-4">
+    <a href="index.php" class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white p-2 mr-4">
         Index
     </a>
     <a href="#" class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white p-2 mr-4">
