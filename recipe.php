@@ -12,7 +12,7 @@ $bdd = connexion::connexionBdd();
 <body>
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
-<?php if(isset($_SESSION['id_user'],$_SESSION['nickname'])) {?>
+<?php if(isset($_SESSION['id_session'],$_SESSION['nickname'])) {?>
 <main>
     <!-- Formulaire d'inscription de recette -->
     <form action= "traitment/traitementRecipe.php" enctype="multipart/form-data" method="post" class="flex w-full">
