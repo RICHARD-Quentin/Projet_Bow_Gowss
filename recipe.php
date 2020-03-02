@@ -12,75 +12,87 @@ $bdd = connexion::connexionBdd();
 <body>
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
-<main> <!-- Formulaire d'inscription de recette -->
-    <form action= "traitment/traitementRecipe.php" enctype="multipart/form-data" method="post">
-        <div class="mx-auto border-gray-500 flex-row flex-wrap mx-auto">
-            <div class="w-full max-w-lg inline-block mx-auto">
-                <div>
-                    <label class="w-1/3">Titre</label>
+<?php if(isset($_SESSION['id_user'],$_SESSION['nickname'])) {?>
+<main>
+    <!-- Formulaire d'inscription de recette -->
+    <form action= "traitment/traitementRecipe.php" enctype="multipart/form-data" method="post" class="flex w-full">
+        <div class="mx-auto border-gray-500 w-2/3 flex-col shadow-lg my-6 rounded">
+            <div class="w-full inline-block mx-auto">
+                <div class="mb-2">
+                    <label class="inline-block text-center w-1/3 ">Titre</label>
                     <input type="text" name="title" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div class="mb-2">
-                    <label class="w-1/3">Image</label>
+                    <label class="inline-block text-center w-1/3 ">Image</label>
                     <input type="file" name="myImage" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">
-                    <label class="w-1/3">Durée de preparation</label>
+                    <label class="inline-block text-center w-1/3 ">Durée de preparation</label>
                     <input type="number" min="0" name="duree" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">
-                    <label class="w-1/3">Durée de cuisson</label>
+                    <label class="inline-block text-center w-1/3 ">Durée de cuisson</label>
                     <input type="number" min="0" name="cuisson" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">
-                    <label class="w-1/3">Vegan</label>
+                    <label class="inline-block text-center w-1/3 ">Vegan</label>
                     <input type="checkbox" name="isVegan" class="w-1/2 border rounded border-gray-500 w-12">
                 </div>
                 <div  class="mb-2">
-                    <label class="w-1/3">Nombre de personnes</label>
+                    <label class="inline-block text-center w-1/3 ">Nombre de personnes</label>
                     <input type="number" min="0" name="persons" class="w-1/2 border rounded border-gray-500 w-12 text-center">
                 </div>
                 <div  class="mb-2">
-                    <label class="w-1/3">Contenu</label>
+                    <label class="inline-block text-center w-1/3">Contenu</label>
                     <textarea name="content" class="w-1/2 border rounded border-gray-500"></textarea>
                 </div>
             </div>
-            <div id="ing" class="w-2/5 inline-block text-center">
+            <!--// Formulaire d'ajout d'ingredients-->
+            <div id="ing" class="w-full inline-block text-center mb-5">
                 <label>Ingredients</label><br>
-                <span id="addIngredientButton" class="border border-gray-500 rounded bg-gray-300">Ajouter un ingredient</span>
-                <ul id="ingredientList">
+                <ul id="ingredientList" class="mb-2">
                 </ul>
+                <span id="addIngredientButton" class="border border-gray-500 rounded bg-gray-300 mb-3 p-1">Ajouter un ingredient</span>
+
             </div>
 
-            <div id="stp" class="w-2/5 inline-block text-center">
-                <label>Etape</label><br>
-                <span id="addStepButton" class="border border-gray-500 rounded bg-gray-300">Ajouter une étape</span>
-                <ul id="stepList">
-                </ul>
+            <!--Formulaire d'ajout d'etapes-->
+            <div class="flex flex-col">
+                <div id="stp" class="w-full inline-block text-center mb-5">
+                    <label>Etapes</label><br>
+                    <ul id="stepList" class="mb-2">
+                    </ul>
+                    <span id="addStepButton" class="border border-gray-500 rounded bg-gray-300 p-1">Ajouter une étape</span>
+
+                </div>
+                <input type="submit" name="submit" value="Envoyer" class="inline-block">
             </div>
         </div>
-        <input type="submit" name="submit" value="Envoyer" class="inline-block">
-
     </form>
 </main>
 <script>
     //Script qui ajoute un ingredient quand on clique sur le bouton
     $('#addIngredientButton').click(function(e){
-        var $clone=`<li id="newIngredient" class="relative list-none">
-            <div>
-                <label>Ingredient :</label><input type="text" class="border border-gray-500" name="ing[]">
-                <label for="">Qté</label><input type="number" min="0" class="border border-gray-500" name="qte[]">
+        var $clone=`<li id="newIngredient" class="relative list-none flex-row">
+            <div class="inline-block w-1/3">
+                <label>Ingredient :</label>
+                <input type="text" class="border border-gray-500" value=' ' name="ing[]">
+            </div>
+            <div class="inline-block w-1/3">
+                <label for="">Qté</label>
+                <input type="text" value=' ' class="border border-gray-500" name="qte[]">
+
                 <select class="border border-gray-500" name="unit[]">
                 <option value=" ">unité</option>
                 <option value="g">g</option>
                 <option value="cl">cl</option>
                 </select>
+            </div>
 
 
                 <span class="removeButton absolute top-0 right-10 bottom-0">
-                                    <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                                </span>
-            </div>
+                    <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>
 </li>`;
         $('#ingredientList').append($clone)
     });
@@ -90,7 +102,7 @@ $bdd = connexion::connexionBdd();
         var $clone=
     `<li id="newStep" class="relative list-none">
             <div>
-            <label>Etape <span class="i"></span> : </label><textarea type="text" class="border border-gray-500" name="step[]"></textarea>
+            <label class="inline my-auto">Etape <span class="i"></span> : </label><textarea type="text" class="border border-gray-500" cols="100" name="step[]"></textarea>
         <span class="removeButton absolute top-0 right-10 bottom-0">
             <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
             </span>
@@ -115,7 +127,10 @@ $bdd = connexion::connexionBdd();
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="js/script.js"></script>
-
+<?php }
+else{?>
+<p>Vous n'êtes pas connecté, vous ne pouvez pas envoyer de recette</p>
+<?php } ?>
 <?php include("template/footer.php"); ?>
 
 </body>
