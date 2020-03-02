@@ -13,9 +13,7 @@ $bdd = connexion::connexionBdd();
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
 
-<h1>Connexion</h1>
 <?php include("formConnexion.php"); ?>
-<h1>Inscription</h1>
 <?php include("formInscription.php"); ?>
 
 
