@@ -26,6 +26,9 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <a href="recipe.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-blender fa-fw mr-1"></i>Envoyer une recette
         </a>
+        <a href="recipesDisplay.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <i class="fas fa-book fa-fw mr-1"></i>Recettes
+        </a>
         <a href="recipe.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-heart fa-fw mr-1"></i>Favoris
         </a>
@@ -37,6 +40,9 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         </a>
         <a id="btnInscription" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Inscription
+        </a>
+        <a href="recipesDisplay.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <i class="fas fa-book fa-fw mr-1"></i>Recettes
         </a>
         <?php
     }?>
