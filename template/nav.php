@@ -11,11 +11,11 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
     </div>
     <div class="block lg:hidden">
         <button class="flex items-center  rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <i class="fas fa-hamburger"></i>
+            <i id="btnHamburger" class="m-1 fas fa-hamburger"></i>
         </button>
     </div>
 
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div id="navElements" class="w-full block flex-grow hidden sm:hidden lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
 <?php
     if (isset($_SESSION['nickname'])){
@@ -25,6 +25,9 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         </a>
         <a href="recipe.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-blender fa-fw mr-1"></i>Envoyer une recette
+        </a>
+        <a href="recipe.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <i class="fas fa-heart fa-fw mr-1"></i>Favoris
         </a>
         <?php
     }else{
@@ -41,3 +44,4 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
     </div>
 </nav>
 <script type="text/javascript" src="js/hiddenFormConnexionInscription.js"></script>
+<script type="text/javascript" src="js/hamburger.js"></script>
