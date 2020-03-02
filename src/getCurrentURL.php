@@ -16,6 +16,4 @@ function getCurrentURL()
     $lien = $protocol . '://' . $host . $script . '?' . $params;
     return $lien;
 }
-
-getCurrentURL();
 ?>
