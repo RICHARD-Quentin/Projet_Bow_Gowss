@@ -10,8 +10,8 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <span class="font-semibold text-xl tracking-tight">Les recettes du developpeur</span>
     </div>
     <div class="block lg:hidden">
-        <button class="flex items-center  border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><i class="fas fa-hamburger"></i></svg>
+        <button class="flex items-center  rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <i class="fas fa-hamburger"></i>
         </button>
     </div>
 
@@ -29,10 +29,10 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <?php
     }else{
         ?>
-        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        <a id="btnConnexion" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Connexion
         </a>
-        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        <a id="btnInscription" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Inscription
         </a>
         <?php
@@ -40,3 +40,4 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         </div>
     </div>
 </nav>
+<script type="text/javascript" src="js/hiddenFormConnexionInscription.js"></script>

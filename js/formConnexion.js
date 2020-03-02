@@ -1,34 +1,25 @@
 $(document).ready(function(){
 
 // initialiser toutes les variables
-    var $emailConnexion = $('#emailConnexion'),
-        $mdpConnexion = $('#passConnexion '),
-        $envoiConnexion = $('#submit');
+    var email = $('#emailConnexion'),
+        regexMail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ;
 
-    $emailConnexion.keyup(function () {
-        if($(this).val().length < 5){
-            $(this).removeClass("border-2 border-green-500 border-gray-200 border");
-            $(this).addClass("border-2 border-red-500");
-        }else {
+    //appel de confcions
+    email.keyup(verifEmailConnexion);
+
+    function verifEmailConnexion(){
+
+        if(regexMail.test(this.value)){
             $(this).removeClass("border-2 border-red-500 border-gray-200 border");
             $(this).addClass("border-2 border-green-500");
+            $(this).next().addClass("hidden");
         }
-    });
-
-    $mdpConnexion.keyup(function(){
-        if (regexMdp.test(this.value))
-        {
-            console.log("MDP fort");
-            $(this).removeClass("border-red-500 border-gray-200");
-            $(this).addClass("border-2 border-green-500");
-        }
-        else {
-            console.log("MDP faible");
-            $(this).removeClass("border-green-500 border-gray-200");
+        else{
+            $(this).removeClass("border-2 border-green-500 border-gray-200 border");
             $(this).addClass("border-2 border-red-500");
+            $(this).next().removeClass("hidden");
         }
-    });
-
+    };
 });
 
 
