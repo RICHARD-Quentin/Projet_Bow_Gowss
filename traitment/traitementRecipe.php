@@ -15,15 +15,8 @@ $cuisson=$_POST['cuisson'];
 $ingredient=$_POST['ing'];
 $quantity=$_POST['qte'];
 $unit=$_POST['unit'];
-$qteunit=array_combine($quantity,$unit);
-$i=0;
-foreach ($qteunit as $qte=>$unit){
-    $qteUnit[$i]="$qte$unit";
-    $i++;
-}
-var_dump($ingredient,$qteUnit);
-$ingredient=array_combine($ingredient,$qteUnit);
 
+$ingredients=array_combine($ingredient,$quantity+$unit);
 
 $step=$_POST['step'];
 
@@ -45,8 +38,8 @@ $user_id=1;
 /*$_SESSION['id_session'];*/
 
 
-if(isset($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredient, $step)) {
-recipes::register($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredient, $step);
+if(isset($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredients, $step)) {
+recipes::register($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredients, $step);
 }
 else{
 
