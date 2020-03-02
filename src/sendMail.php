@@ -9,8 +9,9 @@ require('../lib/PHPMailer/src/Exception.php');
 
 require('../src/getCurrentURL.php');
 require_once('../lib/PHPMailer/composer/ClassLoader.php');
+?>
 
-
+<?php
 
 $mail = new PHPMailer(true);
 
@@ -18,8 +19,8 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.mailtrap.io';  //MailTrap SMTP server
     $mail->SMTPAuth = true;
-    $mail->Username = "2af026b2ac86b4";
-    $mail->Password = "21e246fe9ff2f0";
+    $mail->Username = "a94e87967e8d9c";
+    $mail->Password = "1552cb672907bb";
     $mail->Port = 465;                    //SMTP port (465 // 587 // 25)
 
     $mail->setFrom('fromTruc@gmail.com', 'Web Dev');
@@ -28,7 +29,7 @@ try {
     $mail->isHTML(true);
     $lien = getCurrentURL();
     $mail->Subject = 'Email incoming FROM MailTrap ';
-    $mail->Body = "Hello User, <p>test mail sent through Mailtrap SMTP</p>". $lien ."<br><br>Thank you";
+    $mail->Body = utf8_decode("Bonjour, je t'invite à aller voir cette recette:</br></p>". $lien ."<br><br>Bon appétit!");
 
     if (!$mail->send()) {
         echo 'Message could not be sent.';
@@ -40,5 +41,6 @@ try {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
+
 
 ?>
