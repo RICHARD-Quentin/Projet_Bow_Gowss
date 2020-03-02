@@ -5,19 +5,19 @@ try {
         die('Erreur : ' .$e->getMessage());
     }
 
-$id_connexion = ($_POST['idConnexion']);
-$email_connexion = $_POST['emailConnexion'];
+$id_inscription = ($_POST['idInscription']);
+$email_inscription = $_POST['emailInscription'];
 
 //hachage du MDP
-$pass_hash = password_hash($_POST['passConnexion'], PASSWORD_DEFAULT);
+$pass_hash = password_hash($_POST['passInscription'], PASSWORD_DEFAULT);
 
 //insertion
-$req = $bdd->prepare('INSERT INTO user(nickname, password, email) VALUES(:id_connexion, :pass_connexion, :email_connexion)');
+$req = $bdd->prepare('INSERT INTO user(nickname, password, email) VALUES(:id_inscription, :pass_inscription, :email_inscription)');
 
 $req->execute([
-    'id_connexion' => $id_connexion,
-    'pass_connexion' => $pass_hash,
-    'email_connexion' => $email_connexion
+    'id_inscription' => $id_inscription,
+    'pass_inscription' => $pass_hash,
+    'email_inscription' => $email_inscription
 ]);
 $req->debugDumpParams();
 
