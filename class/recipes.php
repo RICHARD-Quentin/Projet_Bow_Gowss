@@ -16,7 +16,7 @@ class recipes
         return $recipeImagePath;
     }
 
-    public static function register($title, $content, $duree, $cuisson, $image, $persons, $isVegan, $user_id, $ingredient, $step)
+    public static function register($title, $content, $duree, $cuisson, $image, $persons, $isVegan, $user_id, $ingredients, $step)
     {
 
         $bdd = connexion::connexionBdd();
@@ -34,13 +34,16 @@ class recipes
         ));
         $id = $bdd->lastInsertId();
 
-        foreach($ingredient as $ingr=>$qte){
-        $ing = $bdd->prepare('INSERT INTO recipeingredient (recipe, ingredient, quantity) VALUES (:recipe, :ingredient, :quantity)');
-        $ing->execute(array(
-            'recipe'=>$id,
-            'ingredient'=>$ingr,
-            'quantity'=>$qte
-        ));
+        if ($ingredients!=null){
+            foreach($ingredients as $ingredient){
+                $ing = $bdd->prepare('INSERT INTO recipeingredient (recipe, ingredient, quantity, unity) VALUES (:recipe, :ingredient, :quantity, :unity)');
+                $ing->execute(array(
+                    'recipe'=>$id,
+                    'ingredient'=>$ingredient['name'],
+                    'quantity'=>$ingredient['quantity'],
+                    'unity'=>$ingredient['unity']
+                ));
+            }
         }
         foreach($step as $steps){
         $stp = $bdd->prepare('INSERT INTO recipesteps(recipe, steps) VALUES (:recipe, :steps)');
