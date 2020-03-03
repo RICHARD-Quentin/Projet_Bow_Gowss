@@ -52,21 +52,40 @@ class recipes
         #header('index.php');
     }
 
-    public static function update($id, $title, $content, $duree, $image)
+    public static function update($id, $title, $content, $duree, $cuisson, $image, $persons, $isVegan, $user_id, $ingredient, $step)
     {
         $bdd = connexion::connexionBdd();
-        $updt = $bdd->prepare('UPDATE recipe 
-                        SET title= :title,
-                        content= :content,
-                        image= :image, 
-                        duree= :duree  
-                        WHERE id=:id');
-
-        $updt->execute(array($title,$content,$image,$duree,$id));
+        $reg = $bdd->prepare('UPDATE recipe SET title=:title, content=:content, image=:image, duree=:duree, cuisson=:cuisson, persons=:persons, isVegan=:isVegan, user_id=:user_id) WHERE id=:id');
+        $reg->execute(array(
+            'title'=>$title,
+            'content'=>$content,
+            'image'=>$image,
+            'duree'=>$duree,
+            'cuisson'=>$cuisson,
+            'persons'=>$persons,
+            'isVegan'=>$isVegan,
+            'user_id'=>$user_id,
+            'id'=>$id
+        ));
+        foreach($ingredient as $ingr=>$qte){
+            $ing = $bdd->prepare('UPDATE recipeingredient SET (ingredient=:ingredient, quantity=:quantity) WHERE id=:ing_id');
+            $ing->execute(array(
+                'ing_id'=>$ing_id,
+                'ingredient'=>$ingr,
+                'quantity'=>$qte
+            ));
+        }
+        foreach($step as $steps){
+            $stp = $bdd->prepare('UPDATE recipesteps SET (recipe=:recipe, steps=:steps) ');
+            $stp->execute(array(
+                'recipe'=>$id,
+                'steps'=>$steps
+            ));
+        }
     }
-    public static function delete($id){
+    public static function deleteRecipe($id){
         $bdd = connexion::connexionBdd();
         $del = $bdd->prepare('DELETE FROM recipe WHERE id=:id');
-        $del-> execute(array($id));
+        $del-> execute(array("id"=>$id));
     }
 }

@@ -14,13 +14,15 @@ $bdd = connexion::connexionBdd();
 <?php include("template/hero.php"); ?>
 <?php include("template/mentionsLegales.php"); ?>
 
-
+<?php include("formConnexion.php"); ?>
+<?php include("formInscription.php"); ?>
+<?php include("src/formSendMail.php"); ?>
 
 <?php
 
 $stmt=$bdd->query("SELECT * FROM recipe");
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
-var_dump($list);
+//var_dump($list);
     foreach ($list as $lst)
     {
 ?>
