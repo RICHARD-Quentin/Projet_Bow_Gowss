@@ -6,7 +6,7 @@ $(document).ready(function(){
     btnHamburger.click(showNav);
 
 
-    function showNav() {
+    function showNav(event) {
         navElements.removeClass("hidden sm:hidden");
         event.stopPropagation();
     }
