@@ -4,7 +4,7 @@ $(document).ready(function(){
     var email = $('#emailConnexion'),
         regexMail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ;
 
-    //appel de confcions
+    //appel de fonction
     email.keyup(verifEmailConnexion);
 
     function verifEmailConnexion(){
