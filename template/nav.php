@@ -35,10 +35,10 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <?php
     }else{
         ?>
-        <a id="btnConnexion" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        <a id="btnConnexion" class="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Connexion
         </a>
-        <a id="btnInscription" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        <a id="btnInscription" class="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Inscription
         </a>
         <a href="recipesDisplay.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
@@ -49,5 +49,7 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         </div>
     </div>
 </nav>
+<?php include("formConnexion.php"); ?>
+<?php include("formInscription.php"); ?>
 <script type="text/javascript" src="js/hiddenFormConnexionInscription.js"></script>
 <script type="text/javascript" src="js/hamburger.js"></script>

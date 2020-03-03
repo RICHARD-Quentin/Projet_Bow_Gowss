@@ -4,9 +4,9 @@ $(document).ready(function(){
         formInscription = $('#divFormInscription'),
         formConnexion = $('#divFormConnexion');
 
-        btnInscription.click(showInscription),
+    btnInscription.click(showInscription),
         btnConnexion.click(showConnexion);
-        // formInscription.click(hideInscription);
+    // formInscription.click(hideInscription);
 
     function showInscription(event) {
         formInscription.removeClass("hidden");
