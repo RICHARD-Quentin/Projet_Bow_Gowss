@@ -1,6 +1,8 @@
 <?php
 include("template/setup.php");
 include_once('class/connexion.php');
+include_once('class/recipes.php');
+
 $bdd = connexion::connexionBdd();
 ?>
 
