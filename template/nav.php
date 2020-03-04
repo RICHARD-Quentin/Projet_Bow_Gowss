@@ -5,10 +5,12 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
 
 
 <nav class="flex items-center justify-between flex-wrap bg-green-400 p-6">
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <a href="index.php">
+        <div href="index.php" class="flex items-center flex-shrink-0 text-white mr-6">
         <i class="fas fa-carrot fa-fw mr-1"></i>
-        <span class="font-semibold text-xl tracking-tight">Les recettes du developpeur</span>
-    </div>
+        <span  class="font-semibold text-xl tracking-tight">Les recettes du developpeur</span>
+        </div>
+    </a>
     <div class="block lg:hidden">
         <button class="flex items-center  rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
             <i id="btnHamburger" class="m-1 fas fa-hamburger"></i>
@@ -34,7 +36,7 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <a href="recipesDisplay.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-book fa-fw mr-1"></i>Recettes
         </a>
-        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        <a href="favoris.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-heart fa-fw mr-1"></i>Favoris
         </a>
         <?php
