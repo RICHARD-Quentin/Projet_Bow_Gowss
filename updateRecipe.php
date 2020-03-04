@@ -18,7 +18,6 @@ $cont=$content->fetch(PDO::FETCH_ASSOC);
 $ingredients=$ing->fetchAll(PDO::FETCH_CLASS);
 $stps=$step->fetchAll(PDO::FETCH_CLASS);
 
-var_dump($ingredients);
 include("template/setup.php");
 include_once('class/connexion.php');
 $bdd = connexion::connexionBdd();
@@ -205,4 +204,3 @@ $bdd = connexion::connexionBdd();
         });
     });
 </script>
-
