@@ -132,8 +132,4 @@ if(isset($_POST['delStepId'],$_POST['delStep'])) {
 else{
     $delStepTable=null;
 }
-var_dump('updateIngredient',$updateIngredientTable,'newIngredient', $newIngredientTable,'delIngredient', $delIngredientTable);
-
-var_dump('updateStep',$updateStepTable,'newStep', $newStepTable,'delStep', $delStepTable);
-
 recipes::update($recipeId, $title, $content, $duree, $cuisson, $persons, $updateIngredientTable, $newIngredientTable, $delIngredientTable,$updateStepTable, $newStepTable, $delStepTable);

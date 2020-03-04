@@ -1,6 +1,8 @@
 <?php
 include("template/setup.php");
 include_once ('class/connexion.php');
+include_once('class/recipes.php');
+
 $bdd = connexion::connexionBdd();
 ?>
 
@@ -17,7 +19,6 @@ $bdd = connexion::connexionBdd();
 
 $stmt=$bdd->query("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id");
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
-var_dump($list);
 foreach ($list as $lst) {
     // Recup des ingredients de la recette
     $stmt=$bdd->prepare("SELECT * FROM recipeingredient WHERE recipe=:id");
@@ -37,8 +38,8 @@ foreach ($list as $lst) {
                 <div class="font-bold text-xl mb-2 mx-auto inline-block"><?php echo $lst->title ?></div>
                 <div class="px-6 py-4 mx-auto inline-block">
                     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Nombre de  <?php if($lst->persons==1) echo 'personne : '. $lst->persons; else echo 'personnes : '. $lst->persons ?></span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php $timePrep=$lst->duree; $hPrep=intdiv($timePrep,60); $minPrep=$timePrep%60; if($hPrep!=0) echo $hPrep.'h'.$minPrep.'min'; else echo $minPrep . 'min'?></span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php $timeCui=$lst->cuisson; $hCui=intdiv($timeCui,60); $minCui=$timeCui%60;  if($hCui!=0) echo $hCui.'h'.$minCui.'min'; else echo $minCui . 'min' ?></span>
+                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php recipes::timeConvert($lst->duree)?></span>
+                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php recipes::timeConvert($lst->cuisson)?></span>
                 </div>
             </div>
             <!--Main de la recette-->
