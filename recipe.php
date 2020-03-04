@@ -79,11 +79,11 @@ $bdd = connexion::connexionBdd();
         var $clone=`<li id="newIngredient" class="relative list-none flex-row">
             <div class="inline-block w-1/3">
                 <label>Ingredient :</label>
-                <input type="text" class="border border-gray-500" value=' ' name="ing[]">
+                <input type="text" class="border border-gray-500" value='' name="ing[]">
             </div>
             <div class="inline-block w-1/3">
                 <label for="">Qté</label>
-                <input type="text" value=' ' class="border border-gray-500" name="qte[]">
+                <input type="text" value='' class="border border-gray-500" name="qte[]">
 
                 <select class="border border-gray-500" name="unit[]">
                 <option value=" ">unité</option>
