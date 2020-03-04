@@ -14,6 +14,7 @@ $bdd = connexion::connexionBdd();
 <body  class="min-h-screen">
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
+
 <?php include("template/mentionsLegales.php"); ?>
 
 <?php include("formConnexion.php"); ?>
