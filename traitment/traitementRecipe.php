@@ -12,11 +12,26 @@ $title=$_POST['title'];
 $duree=$_POST['duree'];
 $cuisson=$_POST['cuisson'];
 
-$ingredient=$_POST['ing'];
-$quantity=$_POST['qte'];
-$unit=$_POST['unit'];
+if(isset($_POST['ing']) && !empty($_POST['ing'])) {
 
-$ingredients=array_combine($ingredient,$quantity+$unit);
+
+    $ing = $_POST['ing'];
+    $qte = $_POST['qte'];
+    $unit = $_POST['unit'];
+
+    $i = 0;
+    foreach ($ing as $ingredient) {
+        $ingredientTable[$i] = [
+
+            'name' => $ingredient,
+            'quantity' => $qte[$i],
+            'unity' => $unit[$i]
+        ];
+        $i++;
+    }
+}else{
+    $ingredientTable=null;
+}
 
 $step=$_POST['step'];
 
@@ -38,8 +53,8 @@ $user_id=1;
 /*$_SESSION['id_session'];*/
 
 
-if(isset($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredients, $step)) {
-recipes::register($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredients, $step);
+if(isset($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredientTable, $step)) {
+recipes::register($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredientTable, $step);
 }
 else{
 
