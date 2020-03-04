@@ -124,4 +124,13 @@ class recipes
         $del = $bdd->prepare('DELETE FROM recipe WHERE id=:id');
         $del-> execute(array("id"=>$id));
     }
+    public static function timeConvert($time){
+        $hPrep=intdiv($time,60);
+        $minPrep=$time%60;
+        if($hPrep!=0) {
+            echo $hPrep.'h'.$minPrep.'min';
+        } else {
+            echo $minPrep . 'min';
+        }
+    }
 }
