@@ -78,7 +78,7 @@ foreach ($listIngredient as $lst)
 $pdf->Rect(60, 10, 90, 10, 3.5, 'DF');
 //$BDDImage="localhost/PROJET_WEB/Projet_Bow_Gowss/".$BDDImage;
 //echo $BDDImage;
-$pdf->Image('../img/image(23).jpg',10,30,-300); //$image (1)
+$pdf->Image('../img/image(23).jpg',10,30,100 ); //$image (1)
 $pdf->Line(10,100,200,100);
 $pdf->Line(165,100,165,110);
 $pdf->Line(130,100,130,250);
@@ -90,7 +90,7 @@ $pdf->SetFont('Arial','B',8 );      // font
 $link=getCurrentURL();
 $pdf->Text(5,295,"$link"); //(8)
 
-$pdf->Output("","Les recettes du Geek - "); //$lenomdelarecette
+$pdf->Output("","Les recettes du Developpeur - $BDDContent.pdf"); //$lenomdelarecette
 
 
 
