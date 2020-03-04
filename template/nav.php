@@ -19,7 +19,12 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <div class="text-sm lg:flex-grow">
 <?php
     if (isset($_SESSION['nickname'])){
-        echo "<p>Bonjour " . $_SESSION['nickname'] . "<i class=\"fas fa-user fa-fw mr-1\"></i></p>" ?>
+        echo "<p>Bonjour " . $_SESSION['nickname'] . "<i class=\"fas fa-user fa-fw mr-1\"></i></p>";
+
+        if (isset($_SESSION['is_admin']) AND ($_SESSION['is_admin'] == 1)){
+            echo "</i> Vous étes sur une session administrateur</p>";
+        }
+        ?>
         <a href="traitment/traitementDeconnexion.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-power-off fa-fw mr-1"></i>Déconnexion
         </a>
@@ -29,10 +34,20 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         <a href="recipesDisplay.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-book fa-fw mr-1"></i>Recettes
         </a>
-        <a href="recipe.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             <i class="fas fa-heart fa-fw mr-1"></i>Favoris
         </a>
         <?php
+
+        if (isset($_SESSION['is_admin']) AND ($_SESSION['is_admin'] == 1)) {
+            ?>
+            <a href="dashboardAdmin.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                <i class="fas fa-tachometer-alt fa-fw mr-1"></i>Dashboard
+            </a>
+            <?php
+
+        }
+
     }else{
         ?>
         <a id="btnConnexion" class="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">

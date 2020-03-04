@@ -8,4 +8,9 @@ if (!isset($_SESSION['nickname']) AND (!isset($_SESSION['id_session']))){
         include("formCookies.php");
     }
 }
+
+
+
+
+
 ?>
