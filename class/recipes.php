@@ -52,7 +52,7 @@ class recipes
             'steps'=>$steps
         ));
         }
-        #header('index.php');
+        header('index.php');
     }
 
     public static function update($recipeId, $title, $content, $duree, $cuisson, $persons, $updateIngredientTable, $newIngredientTable, $delIngredientTable,$updateStepTable, $newStepTable, $delStepTable)
@@ -128,9 +128,9 @@ class recipes
         $hPrep=intdiv($time,60);
         $minPrep=$time%60;
         if($hPrep!=0) {
-            echo $hPrep.'h'.$minPrep.'min';
+            return ($hPrep.'h'.$minPrep.'min');
         } else {
-            echo $minPrep . 'min';
+            return ($minPrep . 'min');
         }
     }
 }

@@ -36,12 +36,15 @@ $bdd = connexion::connexionBdd();
             <div class="max-w-3xl w-5/6 rounded overflow-hidden shadow-lg mx-auto my-6">
                 <img class="w-full h-64" src="<?php echo $lst->image ?>">
                 <div class="px-6 py-4">
-                    <div class="mx-auto flex flex-col">
+                    <div class="mx-auto flex flex-col relative">
                         <div class="font-bold text-xl mb-2 mx-auto inline-block"><?php echo $lst->title ?></div>
+                        <i id="fav" class="false fa-lg fas fa-heart text-gray-400 hover:text-red-600 absolute right-0 top-0"></i></a>
+
+                        <p class="text-center"><?php echo $lst->content ?> </p>
                         <div class="px-6 py-4 mx-auto inline-block">
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Nombre de  <?php if ($lst->persons == 1) echo 'personne : ' . $lst->persons; else echo 'personnes : ' . $lst->persons ?></span>
-                            <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php recipes::timeConvert($lst->duree) ?></span>
-                            <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php recipes::timeConvert($lst->cuisson) ?></span>
+                            <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php echo recipes::timeConvert($lst->duree) ?></span>
+                            <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php echo recipes::timeConvert($lst->cuisson) ?></span>
                         </div>
                     </div>
                     <!--Main de la recette-->
@@ -68,7 +71,7 @@ $bdd = connexion::connexionBdd();
                     <!--Footer de recette-->
                     <div class="w-full relative mt-10">
                         <div class="absolute left-0 bottom-0">
-                            <?php if((isset($_SESSION['id_session'], $_SESSION['nickname']) && ($_SESSION['nickname'] === $lst->nickname && $_SESSION['id_session'] === $lst->user_id)) || (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1)) { ?>
+                            <?php if((isset($_SESSION['id_session'], $_SESSION['nickname']) && ($_SESSION['nickname'] === $lst->nickname && $_SESSION['id_session'] === $lst->user_id)) || (/*isset($_SESSION['is_admin']) &&*/ $_SESSION['is_admin'] == 1)) { ?>
                                 <a href="updateRecipe.php?id=<?php echo $id ?>">
                                     <button
                                         class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
@@ -77,7 +80,7 @@ $bdd = connexion::connexionBdd();
                                 </a>
                             <?php } ?>
 
-                            <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) { ?>
+                            <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
                                 <a href="traitment/suprRecipe.php?id=<?php echo $id ?>">
                                     <button
                                         class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded">
@@ -94,6 +97,18 @@ $bdd = connexion::connexionBdd();
                 </div>
             </div>
         <?php } ?>
+        <script>
+            $('#fav').click(function(){
+                if($(this).hasClass("false")){
+                    $(this).removeClass("false text-gray-400 hover:text-red-600").addClass("true text-red-600 hover:text-gray-400").attr()
+                }
+                else if($(this).hasClass("true")){
+                    $(this).removeClass("true text-red-600 hover:text-gray-400").addClass("false text-gray-400 hover:text-red-600")
+                }
+                })
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
         <?php include("template/footer.php"); ?>
         <?php include("template/js.php"); ?>
     </body>
