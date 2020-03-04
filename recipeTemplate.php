@@ -97,6 +97,18 @@ $bdd = connexion::connexionBdd();
                 </div>
             </div>
         <?php } ?>
+        <script>
+            $('#fav').click(function(){
+                if($(this).hasClass("false")){
+                    $(this).removeClass("false text-gray-400 hover:text-red-600").addClass("true text-red-600 hover:text-gray-400").attr()
+                }
+                else if($(this).hasClass("true")){
+                    $(this).removeClass("true text-red-600 hover:text-gray-400").addClass("false text-gray-400 hover:text-red-600")
+                }
+                })
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
         <?php include("template/footer.php"); ?>
         <?php include("template/js.php"); ?>
     </body>
