@@ -1,17 +1,17 @@
 <?php
-include("setup.php");
-include_once ('../class/connexion.php');
+include("template/setup.php");
+include_once('class/connexion.php');
 $bdd = connexion::connexionBdd();
 ?>
 
 <!DOCTYPE html>
 
 <html lang="fr">
-<?php include("head.php"); ?>
+<?php include("template/head.php"); ?>
 
 <body>
-<?php include("nav.php"); ?>
-<?php include("hero.php"); ?>
+<?php include("template/nav.php"); ?>
+<?php include("template/hero.php"); ?>
 
 <?php
 $id=intval($_GET['id']);
@@ -19,7 +19,6 @@ $id=intval($_GET['id']);
 $stmt=$bdd->prepare("SELECT title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id WHERE recipe.id=:id");
 $stmt->execute(array("id"=>$id));
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
-var_dump($list);
 foreach ($list as $lst) {
     // Recup des ingredients de la recette
     $stmt=$bdd->prepare("SELECT * FROM recipeingredient WHERE recipe=:id");
