@@ -128,9 +128,9 @@ class recipes
         $hPrep=intdiv($time,60);
         $minPrep=$time%60;
         if($hPrep!=0) {
-            echo $hPrep.'h'.$minPrep.'min';
+            return $hPrep.'h'.$minPrep.'min';
         } else {
-            echo $minPrep . 'min';
+            return $minPrep . 'min';
         }
     }
 }

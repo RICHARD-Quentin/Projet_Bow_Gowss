@@ -4,6 +4,7 @@ include("../template/setup.php");
 require('../lib/fPDF/fPDF.php');
 require('../lib/PHPMailer/src/SMTP.php');
 require('../src/getCurrentURL.php');
+include("../class/recipes.php");
 
 
 $pdf = new FPDF();
@@ -20,7 +21,6 @@ foreach ($listRecipe as $lst) {
     $BDDCuisson = $lst->cuisson;
 }
 //var_dump($list);
-
 
 
 $pdf->AddPage();
@@ -46,8 +46,16 @@ $pdf->SetFont('Arial','B',8);      // font
 
 //right part PDF
 
-$pdf->Text(132,105,"Preparation: $BDDPreparation mn"); //$BDDPreparation (4)
-$pdf->Text(170,105,"Cuisson: $BDDCuisson mn"); //$BDDCuisson (5)
+$prepTime=recipes::timeConvert($BDDPreparation);
+$cookTime=recipes::timeConvert($BDDCuisson);
+
+$tempsTotal = recipes::timeConvert($BDDCuisson+$BDDPreparation);
+
+
+$pdf->Text(132,105,"Preparation: $prepTime "); //$BDDPreparation (4)
+$pdf->Text(170,105,"Cuisson: $cookTime"); //$BDDCuisson (5)
+$pdf->Text(150,97,"Temps total: $tempsTotal"); //$BDDCuisson (5)
+
 
 $stmt=$bdd->query("SELECT * FROM recipeingredient WHERE recipe=$id");
 $listIngredient=$stmt->fetchAll(PDO::FETCH_CLASS);
@@ -62,6 +70,7 @@ foreach ($listIngredient as $lst)
     $y=$y+10;
 }
 
+
 $stmt=$bdd->query("SELECT * FROM recipesteps WHERE recipe=37;");
 $listIngredient=$stmt->fetchAll(PDO::FETCH_CLASS);
 $pdf->SetY(105);
@@ -74,16 +83,14 @@ foreach ($listIngredient as $lst)
 }
 
 
-
 $pdf->Rect(60, 10, 90, 10, 3.5, 'DF');
-//$BDDImage="localhost/PROJET_WEB/Projet_Bow_Gowss/".$BDDImage;
-//echo $BDDImage;
-$pdf->Image('../img/image(23).jpg',10,30,100 ); //$image (1)
+$BDDImage="../".$BDDImage;
+
+$pdf->Image($BDDImage,10,30,-330 ); //$image (1)
 $pdf->Line(10,100,200,100);
 $pdf->Line(165,100,165,110);
 $pdf->Line(130,100,130,250);
 $pdf->Link(10, 30, 87, 58,"../index.php");
-
 
 
 $pdf->SetFont('Arial','B',8 );      // font
