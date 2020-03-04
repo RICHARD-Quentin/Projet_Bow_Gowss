@@ -9,7 +9,7 @@ require('../src/getCurrentURL.php');
 $pdf = new FPDF();
 $bdd = connexion::connexionBdd();
 
-$stmt=$bdd->query("SELECT * FROM recipe WHERE id=25");
+$stmt=$bdd->query("SELECT * FROM recipe WHERE id=37");
 $listRecipe=$stmt->fetchAll(PDO::FETCH_CLASS);
 
 foreach ($listRecipe as $lst) { //récup image/titre/contenu recette
@@ -38,15 +38,15 @@ $y=120;
 $pdf->SetY(55);
 $pdf->SetX(110);
 $pdf->SetFillColor(255,255,255);
-$pdf->MultiCell(90,5, utf8_decode("$b"),5,'C',1);
+$pdf->MultiCell(90,5, utf8_decode("contenu"),5,'C',1); //$b
 
 $pdf->SetFont('Arial','B',8);      // font
 
 
 //right part PDF
-$pdf->Text(132,105,"Preparation: $d mn");
+$pdf->Text(132,105,"Preparation:  mn"); //$d
 $pdf->Text(170,105,"Cuisson: mn");
-$stmt=$bdd->query("SELECT * FROM ingredient WHERE id=1");
+$stmt=$bdd->query("SELECT * FROM recipeingredient WHERE id=37");
 $listIngredient=$stmt->fetchAll(PDO::FETCH_CLASS);
 $y=120;
 $pdf->SetFont('Arial','B',15);      // font

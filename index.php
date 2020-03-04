@@ -12,14 +12,19 @@ $bdd = connexion::connexionBdd();
 <body  class="min-h-screen">
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
+<?php include("template/mentionsLegales.php"); ?>
 
 <?php include("formConnexion.php"); ?>
 <?php include("formInscription.php"); ?>
 <main>
 <div class="flex flex-row flex-wrap w-11/12 mx-auto my-4">
+
+<?php include("src/formSendMail.php"); ?>
+
 <?php
 $stmt=$bdd->query("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id");
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
+
     foreach ($list as $lst)
     {
 ?>
