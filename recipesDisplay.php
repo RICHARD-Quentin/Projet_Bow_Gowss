@@ -36,10 +36,12 @@ foreach ($list as $lst) {
         <div class="px-6 py-4">
             <div class="mx-auto flex flex-col">
                 <div class="font-bold text-xl mb-2 mx-auto inline-block"><?php echo $lst->title ?></div>
+                <i class="far fa-heart hover:text-red-500"></i></a>
+                <p class="text-center"><?php echo $lst->content ?> </p>
                 <div class="px-6 py-4 mx-auto inline-block">
                     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Nombre de  <?php if($lst->persons==1) echo 'personne : '. $lst->persons; else echo 'personnes : '. $lst->persons ?></span>
-                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php recipes::timeConvert($lst->duree)?></span>
-                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php recipes::timeConvert($lst->cuisson)?></span>
+                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php echo recipes::timeConvert($lst->duree);?></span>
+                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php echo recipes::timeConvert($lst->cuisson);?></span>
                 </div>
             </div>
             <!--Main de la recette-->

@@ -133,3 +133,4 @@ else{
     $delStepTable=null;
 }
 recipes::update($recipeId, $title, $content, $duree, $cuisson, $persons, $updateIngredientTable, $newIngredientTable, $delIngredientTable,$updateStepTable, $newStepTable, $delStepTable);
+header('Location: ../index.php');

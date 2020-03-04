@@ -49,13 +49,13 @@ $recipeImagePath= recipes::image($path,$recipeImage);
 
 $persons=$_POST['persons'];
 $content=$_POST['content'];
-$user_id=1;
-/*$_SESSION['id_session'];*/
+$user_id=$_SESSION['id_session'];
 
 
 if(isset($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredientTable, $step)) {
 recipes::register($title, $content, $duree, $cuisson, $recipeImagePath, $persons, $isVegan, $user_id, $ingredientTable, $step);
+    header('Location: ../index.php');
 }
 else{
-
+    echo 'Erreur';
 }
