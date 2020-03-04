@@ -4,4 +4,4 @@ var_dump($recipeId);
 
 include_once ('../class/recipes.php');
 recipes::deleteRecipe($recipeId);
-header('Location: ../recipesDisplay.php');
+header('Location: ../index.php');

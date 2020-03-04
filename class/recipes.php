@@ -52,7 +52,7 @@ class recipes
             'steps'=>$steps
         ));
         }
-        #header('index.php');
+        header('index.php');
     }
 
     public static function update($recipeId, $title, $content, $duree, $cuisson, $persons, $updateIngredientTable, $newIngredientTable, $delIngredientTable,$updateStepTable, $newStepTable, $delStepTable)
@@ -123,5 +123,17 @@ class recipes
         $bdd = connexion::connexionBdd();
         $del = $bdd->prepare('DELETE FROM recipe WHERE id=:id');
         $del-> execute(array("id"=>$id));
+    }
+    public static function timeConvert($time){
+        $hPrep=intdiv($time,60);
+        $minPrep=$time%60;
+        if($hPrep!=0) {
+
+            return $hPrep.'h'.$minPrep.'min';
+
+        } else {
+
+            return $minPrep . 'min';
+        }
     }
 }
