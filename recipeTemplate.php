@@ -68,7 +68,7 @@ $bdd = connexion::connexionBdd();
                     <!--Footer de recette-->
                     <div class="w-full relative mt-10">
                         <div class="absolute left-0 bottom-0">
-                            <?php if((isset($_SESSION['id_session'], $_SESSION['nickname']) && ($_SESSION['nickname'] === $lst->nickname && $_SESSION['id_session'] === $lst->user_id)) || (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1)) { ?>
+                            <?php if((isset($_SESSION['id_session'], $_SESSION['nickname']) && ($_SESSION['nickname'] === $lst->nickname && $_SESSION['id_session'] === $lst->user_id)) || (/*isset($_SESSION['is_admin']) &&*/ $_SESSION['is_admin'] == 1)) { ?>
                                 <a href="updateRecipe.php?id=<?php echo $id ?>">
                                     <button
                                         class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
@@ -77,7 +77,7 @@ $bdd = connexion::connexionBdd();
                                 </a>
                             <?php } ?>
 
-                            <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) { ?>
+                            <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
                                 <a href="traitment/suprRecipe.php?id=<?php echo $id ?>">
                                     <button
                                         class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded">

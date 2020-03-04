@@ -52,7 +52,7 @@ class recipes
             'steps'=>$steps
         ));
         }
-        #header('index.php');
+        header('index.php');
     }
 
     public static function update($recipeId, $title, $content, $duree, $cuisson, $persons, $updateIngredientTable, $newIngredientTable, $delIngredientTable,$updateStepTable, $newStepTable, $delStepTable)
