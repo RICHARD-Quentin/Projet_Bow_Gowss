@@ -18,9 +18,17 @@ $bdd = connexion::connexionBdd();
 <?php
 
 $stmt=$bdd->query("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id");
-$list=$stmt->fetchAll(PDO::FETCH_CLASS);?>
+$list=$stmt->fetchAll(PDO::FETCH_CLASS);
+;?>
+<div class="flex my-2">
+<input type="text" id="search" class="border border-gray-500 w-1/3 inline-block mx-auto" placeholder="Rechercher une recette">
+    <ul>
+        <li id="resultResearch">
 
-<?php include("template/recipeTemp.php") ?>
+        </li>
+    </ul>
+</div>
+    <?php include("template/recipeTemp.php") ?>
 
 
 <?php include("template/footer.php"); ?>
@@ -59,7 +67,23 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);?>
         }
     })
 </script>
+<?php  ?>
+<script>
+/*    $('#search').keyup(function(){
+        var name=$('#search').val();
+        console.log(name)
+      $.ajax({
+            url:'searchList.php',
+            method:'POST',
+            data:{
+                name:name,
+            },
+            success: $('#resultResearch').append(name)
+        })
+    })*/
+</script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 </body>
 
 
