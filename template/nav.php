@@ -3,7 +3,7 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
 }
 ?>
 
-<nav class="flex items-center justify-between flex-wrap bg-green-400 p-6 sticky top-0 z-20">
+<nav class="flex items-center justify-between flex-wrap bg-green-400 p-6 sticky top-0 z-10">
     <a href="index.php">
         <div href="index.php" class="flex items-center flex-shrink-0 text-white mr-6">
         <i class="fas fa-carrot fa-fw fa-2x mr-1 text-orange-400"></i>
@@ -23,7 +23,7 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         echo "<p class=\"float-right\">Bonjour " . $_SESSION['nickname'] . "<i class=\"fas fa-user fa-fw mr-1\"></i></p>";
 
         if (isset($_SESSION['is_admin']) AND ($_SESSION['is_admin'] == 1)){
-            echo "</i> Vous étes sur une session administrateur</p>";
+            echo "</i> Vous êtes sur une session administrateur</p>";
         }
         ?>
         <a href="traitment/traitementDeconnexion.php" class="float-right block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
