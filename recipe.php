@@ -30,11 +30,11 @@ $bdd = connexion::connexionBdd();
                     <input type="file" name="myImage" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Durée de preparation</label>
+                    <label class="inline-block text-center w-1/3 ">Durée de preparation ( en minutes )</label>
                     <input type="number" min="0" name="duree" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Durée de cuisson</label>
+                    <label class="inline-block text-center w-1/3 ">Durée de cuisson ( en minutes )</label>
                     <input type="number" min="0" name="cuisson" class="w-1/2 border rounded border-gray-500">
                 </div>
                 <div  class="mb-2">

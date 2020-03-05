@@ -19,75 +19,70 @@ $bdd = connexion::connexionBdd();
 
 $stmt=$bdd->query("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id");
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
-foreach ($list as $lst) {
-    // Recup des ingredients de la recette
-    $stmt=$bdd->prepare("SELECT * FROM recipeingredient WHERE recipe=:id");
-    $stmt->execute(array('id'=>$lst->id));
-    $ing=$stmt->fetchAll(PDO::FETCH_CLASS);
+;?>
+<div class="flex my-2">
+<input type="text" id="search" class="border border-gray-500 w-1/3 inline-block mx-auto" placeholder="Rechercher une recette">
+    <ul>
+        <li id="resultResearch">
 
-    // Recup des etapes de la recette
-    $stmt=$bdd->prepare("SELECT * FROM recipesteps WHERE recipe=:id");
-    $stmt->execute(array('id'=>$lst->id));
-    $step=$stmt->fetchAll(PDO::FETCH_CLASS);
-    ?>
-    <!--Header recette-->
-    <div class="max-w-5xl w-5/6 rounded overflow-hidden shadow-lg mx-auto my-6">
-        <img class="w-full h-64" src="<?php echo $lst->image ?>" alt="Sunset in the mountains">
-        <div class="px-6 py-4">
-            <div class="mx-auto flex flex-col">
-                <div class="font-bold text-xl mb-2 mx-auto inline-block"><?php echo $lst->title ?></div>
-                <i class="far fa-heart hover:text-red-500"></i></a>
-                <p class="text-center"><?php echo $lst->content ?> </p>
-                <div class="px-6 py-4 mx-auto inline-block">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Nombre de  <?php if($lst->persons==1) echo 'personne : '. $lst->persons; else echo 'personnes : '. $lst->persons ?></span>
-                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php echo recipes::timeConvert($lst->duree);?></span>
-                    <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php echo recipes::timeConvert($lst->cuisson);?></span>
-                </div>
-            </div>
-            <!--Main de la recette-->
-            <div class="flex">
-                <ul class="text-gray-700 text-base w-1/5">
+        </li>
+    </ul>
+</div>
+    <?php include("template/recipeTemp.php") ?>
 
-                    <?php
 
-                    foreach ($ing as $ingr){
-                        echo '<li>' . $ingr->ingredient . ' : ' . $ingr->quantity . '<br>';
-
-                    } ?>
-                </ul>
-                <ul class="w-4/5">
-                    <?php
-                    $i=1;
-                    foreach ($step as $stp) {
-                        echo '<li class="mb-2">Etape ' . $i . ' : ' . $stp->steps . '</li>';
-                        $i++;
-                    }
-                    ?>
-                </ul>
-            </div>
-            <!--Footer de recette-->
-            <div class="w-full relative mt-10">
-                <div class="absolute left-0 bottom-0">
-                    <a href="updateRecipe.php?id=<?php echo $lst->id?>">
-                        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
-                            Modifier
-                        </button>
-                    </a>
-                    <a class="" href="traitment/suprRecipe.php?id=<?php echo $lst->id?>">
-                        <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded">
-                            Supprimer
-                        </button>
-                    </a>
-                </div>
-                <div class="absolute right-0 bottom-0">
-                    <span class="text-gray-600"> Par <?php echo $lst->nickname ?></span>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
 <?php include("template/footer.php"); ?>
 <?php include("template/js.php"); ?>
+<script>
+    $(document).on('click','#fav',function(){
+        if($(this).hasClass("false")){
+            $(this).removeClass("false text-gray-400 hover:text-red-600").addClass("true text-red-600 hover:text-gray-400")
+            var user=$(this).children('input.user').val();
+            var recipe=$(this).children('input.recipe').val();
+            console.log(user,recipe);
+
+            $.ajax({
+                url:'traitment/traitementInsertFavorite.php',
+                method:'POST',
+                data:{
+                    user:user,
+                    recipe:recipe
+                }
+            })
+
+        }
+        else if($(this).hasClass("true")){
+            $(this).removeClass("true text-red-600 hover:text-gray-400").addClass("false text-gray-400 hover:text-red-600")
+            var user=$(this).children('input.user').val();
+            var recipe=$(this).children('input.recipe').val();
+            console.log(user,recipe);
+            $.ajax({
+                url:'traitment/traitementDeleteFavorite.php',
+                method:'POST',
+                data:{
+                    user:user,
+                    recipe:recipe
+                }
+            })
+        }
+    })
+</script>
+<?php  ?>
+<script>
+/*    $('#search').keyup(function(){
+        var name=$('#search').val();
+        console.log(name)
+      $.ajax({
+            url:'searchList.php',
+            method:'POST',
+            data:{
+                name:name,
+            },
+            success: $('#resultResearch').append(name)
+        })
+    })*/
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </body>
 
