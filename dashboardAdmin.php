@@ -44,7 +44,6 @@ if (isset($_SESSION['is_admin']) AND ($_SESSION['is_admin'] == 1)){
 
 
 <?php include("template/footer.php"); ?>
-<?php include("template/js.php"); ?>
 
 </body>
 
