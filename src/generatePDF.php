@@ -5,10 +5,9 @@ require('../lib/fPDF/fPDF.php');
 require('../src/getCurrentURL.php');
 include("../class/recipes.php");
 
-
+$id=intval($_GET['id']);
 $pdf = new FPDF();
 $bdd = connexion::connexionBdd();
-$id=37;
 $stmt=$bdd->query("SELECT recipe.id, title, content, duree, cuisson, persons, image FROM recipe WHERE id=$id;");
 $listRecipe=$stmt->fetchAll(PDO::FETCH_CLASS);
 

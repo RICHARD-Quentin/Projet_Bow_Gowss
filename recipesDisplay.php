@@ -32,7 +32,6 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 
 
 <?php include("template/footer.php"); ?>
-<?php include("template/js.php"); ?>
 <script>
     $(document).on('click','#fav',function(){
         if($(this).hasClass("false")){
