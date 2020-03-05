@@ -23,7 +23,7 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
         echo "<p class=\"float-right\">Bonjour " . $_SESSION['nickname'] . "<i class=\"fas fa-user fa-fw mr-1\"></i></p>";
 
         if (isset($_SESSION['is_admin']) AND ($_SESSION['is_admin'] == 1)){
-            echo "</i> Vous étes sur une session administrateur</p>";
+            echo "</i> Vous êtes sur une session administrateur</p>";
         }
         ?>
         <a href="traitment/traitementDeconnexion.php" class="float-right block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">

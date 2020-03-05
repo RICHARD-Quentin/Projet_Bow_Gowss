@@ -5,7 +5,7 @@ $_SESSION = array();
 session_unset();
 session_destroy();
 
-echo "destroy";
+echo "session destroy";
 
 header('Location: ../index.php');
 

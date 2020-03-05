@@ -29,6 +29,7 @@ $isAdmin = $resultat['isAdmin'];
 if (!$resultat)
 {
     echo 'Mauvais identifiant ou mot de passe !';
+
 }
 else
 {
@@ -40,7 +41,8 @@ else
         header('Location: ../index.php');
     }
     else {
-        echo 'Mauvais identifiant ou mot de passe !';
+        echo '<p>Mauvais identifiant ou mot de passe !</p>
+        <a href="../index.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">OK</a>';
     }
 }
 
