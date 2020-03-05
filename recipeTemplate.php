@@ -26,7 +26,6 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS); ?>
 <?php include("template/recipeTemp.php") ?>
 
 <?php include("template/footer.php"); ?>
-<?php include("template/js.php"); ?>
 </body>
 
 </html>

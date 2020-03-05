@@ -66,7 +66,6 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 </div>
 </main>
 <?php include("template/footer.php"); ?>
-<?php include("template/js.php"); ?>
 
 </body>
 

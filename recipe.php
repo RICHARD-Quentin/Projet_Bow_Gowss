@@ -136,6 +136,5 @@ else{?>
 <?php include("template/footer.php"); ?>
 
 </body>
-<?php include("template/js.php"); ?>
 
 </html>

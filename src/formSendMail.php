@@ -1,14 +1,20 @@
-<form method="post" id="formSendMail" action="src/sendMail.php" class="z-10 hidden" >
-    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-200">
-        <button class="btn btn-blue float-right">
-            <i class="fas fa-times text-red-500 mx-2"></i>
+<form method="post" id="formSendMail" action="src/sendMail.php" class="z-20 hidden fixed inset-0 w-full max-w-xs container mx-auto">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <button class="btn btn-blue float-right" >
+            <i class="fas fa-times text-red-500 mx-2" id="closeBtn"></i>
         </button>
-        Email : <input class="rounded w-64 my-1 ml-8" name="mailTo" type="text" /><br />
-        Subject : <input class="rounded w-64 my-1 ml-5"id="mailSubject" name="subject" type="text" /><br/>
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+        Email : <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="mailTo" type="text" /><br />
+        </label>
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+        Subject : <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="mailSubject" name="subject" type="text" /><br/>
+        </label>
+        <label class="block text-gray-700 text-sm font-bold mb-2">
         Message:</br>
-        <textarea class="rounded" name="contentInMail" rows="15" cols="40"></textarea><br/>
-        <input class="ml-5 bg-blue-100 hover:bg-blue-300 rounded-sm my-2 px-2 shadow" type="reset" value="Reset">
-        <input class="rounded-sm inset-y-0 bg-blue-100 hover:bg-blue-300 float-right mr-5 my-2 px-2 shadow" id="formSendMail" type="submit" value="Send" />
+        </label>
+        <textarea class="mb-6" name="contentInMail" rows="10"></textarea><br/>
+        <input class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="reset" value="Reset">
+        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" id="formSendMail" type="submit" value="Send" />
     </div>
 </form>
 <script type="text/javascript" src="js/sendMailPopUp.js"></script>

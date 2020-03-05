@@ -1,4 +1,5 @@
 <?php
+include("src/formSendMail.php");
 foreach ($list as $lst) {
         $id=$lst->id;
     // Recup des ingredients de la recette
@@ -29,8 +30,23 @@ foreach ($list as $lst) {
         <img class="w-full h-64" src="<?php echo $lst->image ?>">
         <div class="px-6 py-4">
             <div class="mx-auto flex flex-col relative">
-                <div class="font-bold text-xl mb-2 mx-auto inline-block"><?php echo $lst->title ?></div>
-                <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 top-0"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
+                <div class=" absolute right-0 top-0">
+
+
+                    <a href="src/generatePDF.php?id=<?php echo $lst->id ?>">
+                        <i class="far fa-file-pdf px-3 text-red-600 hover:text-blue-800" id="generatePDF"></i>
+                    </a>
+
+
+                    <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
+                    <a  class="lg:inline-block lg:mt-0 text-teal-200 hover:text-white p-2 mr-4">
+                        <button  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white hover:border hover:border-blue-500 hover:border-transparent rounded-full px-1" id="btnSendMail">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </a>
+                </div>
+                <div class="font-bold text-xl mb-2 mx-auto inline-block"><?php echo $lst->title ?> </div>
+
 
                 <p class="text-center"><?php echo $lst->content ?> </p>
                 <div class="px-6 py-4 mx-auto inline-block">
@@ -74,13 +90,11 @@ foreach ($list as $lst) {
 
                     <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
                         <a href="traitment/suprRecipe.php?id=<?php echo $id ?>">
-                            <button
-                                    class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded">
+                            <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded">
                                 Supprimer
                             </button>
                         </a>
                     <?php } ?>
-
                 </div>
                 <div class="absolute right-0 bottom-0">
                     <span class="text-gray-600"> Par <?php echo $lst->nickname ?></span>

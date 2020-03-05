@@ -36,7 +36,7 @@ function sendTheMail()
         $mail->Subject = $_POST['subject'];
         //echo $_POST['mailTo'];
         //echo $_POST['contentInMail'];
-        $mail->Body = utf8_decode($_POST['contentInMail']. $lien ."<br><br>Bon appétit!");
+        $mail->Body = utf8_decode($_POST['contentInMail']."<br><br>Votre site de cuisine préféré: ". $lien ."<br><br>Bon appétit!");
 
         if (!$mail->send()) {
             echo 'Un problème est survenu.';
