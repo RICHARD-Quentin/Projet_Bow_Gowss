@@ -3,7 +3,7 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
 }
 ?>
 
-<nav class="flex items-center justify-between flex-wrap bg-green-400 p-6 sticky top-0 z-20">
+<nav class="flex items-center justify-between flex-wrap bg-green-400 p-6 sticky top-0 z-10">
     <a href="index.php">
         <div href="index.php" class="flex items-center flex-shrink-0 text-white mr-6">
         <i class="fas fa-carrot fa-fw fa-2x mr-1 text-orange-400"></i>
