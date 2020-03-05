@@ -25,8 +25,8 @@ function sendTheMail()
         $mail->Port = 465;                    //SMTP port (465 // 587 // 25)
 
 
-        $mail->setFrom($_POST['mailTo'], 'Web Dev');
-        $mail->addAddress('ToMachin@gmail.com', 'Society');
+        $mail->setFrom("lesrecettesdudev@lacuisine.fr", 'Web Dev');
+        $mail->addAddress($_POST['mailTo'], 'Society');
 
         $mail->isHTML(true);
         $lien = getCurrentURL();
@@ -39,13 +39,13 @@ function sendTheMail()
         $mail->Body = utf8_decode($_POST['contentInMail']. $lien ."<br><br>Bon appétit!");
 
         if (!$mail->send()) {
-            echo 'Message could not be sent.';
+            echo 'Un problème est survenu.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-            echo 'Message has been sent';
+            echo 'Le message a bien été envoyé';
         }
     } catch (Exception $e) {
-        echo 'Message could not be sent.';
+        echo 'Un problème est survenu.';
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }
 }

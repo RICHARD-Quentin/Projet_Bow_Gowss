@@ -1,8 +1,7 @@
 <?php
-include_once ('../class/connexion.php');
+
 include("../template/setup.php");
 require('../lib/fPDF/fPDF.php');
-require('../lib/PHPMailer/src/SMTP.php');
 require('../src/getCurrentURL.php');
 include("../class/recipes.php");
 
@@ -69,7 +68,6 @@ foreach ($listIngredient as $lst)
     $pdf->Text(155, $y,"$BDDName"); //Ingr (7)
     $y=$y+10;
 }
-
 
 $stmt=$bdd->query("SELECT * FROM recipesteps WHERE recipe=37;");
 $listIngredient=$stmt->fetchAll(PDO::FETCH_CLASS);
