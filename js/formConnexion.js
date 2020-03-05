@@ -38,11 +38,11 @@ $(document).ready(function(){
         }
     };
 
-    envoyer.click(function (e) {
-        e.preventDefault();
-        verifForm(email);
-        verifForm(mdp);
-    });
+    // envoyer.click(function (e) {
+    //     // e.preventDefault();
+    //     verifForm(email);
+    //     verifForm(mdp);
+    // });
 
     function verifForm(){
         if($(this.value) == ""){
