@@ -24,6 +24,7 @@ foreach ($list as $lst) {
     else{
         $isFavoriteClass="false text-gray-400 hover:text-red-600";
     }
+}
     ?>
     <!--Header recette-->
     <div class="max-w-3xl w-5/6 rounded overflow-hidden shadow-lg mx-auto my-6">

@@ -24,7 +24,7 @@ $bdd = connexion::connexionBdd();
 <?php include("src/formSendMail.php"); ?>
 
 <?php
-$stmt=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname FROM recipe INNER JOIN favorite ON recipe.id = favorite.recipe INNER JOIN user ON recipe.user_id = user.id WHERE favorite.user = :user_id");
+$stmt=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname FROM recipe INNER JOIN favorite ON recipe.id = favorite.recipe INNER JOIN user ON recipe.user_id = user.id WHERE favorite.user = :user_id");
 $stmt->execute(array('user_id'=>$_SESSION['id_session']));
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -70,7 +70,6 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 </div>
 </main>
 <?php include("template/footer.php"); ?>
-<?php include("template/js.php"); ?>
 
 <script>
     $(document).on('click','#fav',function(){
@@ -88,6 +87,24 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
                     recipe:recipe
                 }
             })
+
+        }
+        else if($(this).hasClass("true")){
+            $(this).removeClass("true text-red-600 hover:text-gray-400").addClass("false text-gray-400 hover:text-red-600")
+            var user=$(this).children('input.user').val();
+            var recipe=$(this).children('input.recipe').val();
+            console.log(user,recipe);
+            $.ajax({
+                url:'traitment/traitementDeleteFavorite.php',
+                method:'POST',
+                data:{
+                    user:user,
+                    recipe:recipe
+                }
+            })
+        }
+    })
+</script>
 
 </body>
 

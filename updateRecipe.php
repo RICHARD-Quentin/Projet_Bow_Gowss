@@ -58,10 +58,6 @@ $bdd = connexion::connexionBdd();
                     <input type="number" min="0" name="cuisson" class="w-1/2 border rounded border-gray-500" value=<?php echo ($cont['cuisson']); ?>>
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block w-1/3 ">Vegan</label>
-                    <input type="checkbox" name="isVegan" class="w-1/2 border rounded border-gray-500 w-12">
-                </div>
-                <div  class="mb-2">
                     <label class="inline-block w-1/3 ">Nombre de personnes</label>
                     <input type="number" min="0" name="persons" class="w-1/2 border rounded border-gray-500 w-12 text-center" value=<?php echo $cont['persons']; ?>>
                 </div>
