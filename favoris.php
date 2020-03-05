@@ -47,11 +47,11 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
             $isFavoriteClass="false text-gray-400 hover:text-red-600";
         }
 ?>
-        <div class="mx-4 inline-block mb-2 md:w-1/2 lg:w-1/3 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl">
+        <div class="mx-4 inline-block mb-2 md:w-1/2 lg:w-1/3 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl">
+            <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-4"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
             <a href="recipeTemplate.php?id=<?php echo $lst->id ?>">
                 <img class="w-full h-64" src="<?php echo $lst->image ?>" alt="Sunset in the mountains">
                 <div class="px-6 py-4 relative">
-                    <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-1"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
                     <div class="font-bold text-xl mb-2"><?php echo $lst->title ?></div>
                     <p>Par <?php echo $lst->nickname ?></p>
                     <p class="text-gray-700 text-base">

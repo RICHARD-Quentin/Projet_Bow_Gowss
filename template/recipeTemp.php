@@ -1,5 +1,7 @@
 <?php
 include("src/formSendMail.php");
+
+
 foreach ($list as $lst) {
         $id=$lst->id;
     // Recup des ingredients de la recette
@@ -11,7 +13,7 @@ foreach ($list as $lst) {
     $stmt = $bdd->prepare("SELECT * FROM recipesteps WHERE recipe=:id");
     $stmt->execute(array('id' => $id));
     $step = $stmt->fetchAll(PDO::FETCH_CLASS);
-
+if(isset($_SESSION['id_session'])){
     //Test favorite
     $fav= $bdd->prepare("SELECT * FROM favorite WHERE user=:user && recipe=:recipe");
     $fav->execute(array("recipe"=>$id,
@@ -38,8 +40,9 @@ foreach ($list as $lst) {
                         <i class="far fa-file-pdf px-3 text-red-600 hover:text-blue-800" id="generatePDF"></i>
                     </a>
 
-
+                    <?php if(isset($_SESSION['id_session'])){ ?>
                     <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
+                    <?php } ?>
                     <a  class="lg:inline-block lg:mt-0 text-teal-200 hover:text-white p-2 mr-4">
                         <button  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white hover:border hover:border-blue-500 hover:border-transparent rounded-full px-1" id="btnSendMail">
                             <i class="fas fa-share-alt"></i>
@@ -80,7 +83,7 @@ foreach ($list as $lst) {
             <!--Footer de recette-->
             <div class="w-full relative mt-10">
                 <div class="absolute left-0 bottom-0">
-                    <?php if((isset($_SESSION['id_session'], $_SESSION['nickname']) && ($_SESSION['nickname'] === $lst->nickname && $_SESSION['id_session'] === $lst->user_id)) || (/*isset($_SESSION['is_admin']) &&*/ $_SESSION['is_admin'] == 1)) { ?>
+                    <?php if((isset($_SESSION['id_session'], $_SESSION['nickname']) && ($_SESSION['nickname'] === $lst->nickname && $_SESSION['id_session'] === $lst->user_id)) || (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1)) { ?>
                         <a href="updateRecipe.php?id=<?php echo $id ?>">
                             <button
                                     class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">

@@ -17,69 +17,46 @@ $bdd = connexion::connexionBdd();
 
 <?php
 
-$stmt=$bdd->query("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id");
+$stmt=$bdd->query("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id");
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
-;?>
-<div class="flex my-2">
-<input type="text" id="search" class="border border-gray-500 w-1/3 inline-block mx-auto" placeholder="Rechercher une recette">
-    <ul>
-        <li id="resultResearch">
+?>
+<form action="traitment/search.php" method="post" class="flex">
+    <div class="inline-block w-1/2 mx-auto my-2 relative">
+    <input name="name" type="text" id="search" class="p-1 border border-gray-500 relative w-full" placeholder="Rechercher une recette">
+        <button class="absolute right-0 top-0 bottom-0"><i class="fas fa-search hover:text-green-500 p-1"></i></button>
+    </div>
+</form>
 
-        </li>
-    </ul>
-</div>
+<ul id="result-search">
+
+</ul>
     <?php include("template/recipeTemp.php") ?>
 
 
 <?php include("template/footer.php"); ?>
-<script>
-    $(document).on('click','#fav',function(){
-        if($(this).hasClass("false")){
-            $(this).removeClass("false text-gray-400 hover:text-red-600").addClass("true text-red-600 hover:text-gray-400")
-            var user=$(this).children('input.user').val();
-            var recipe=$(this).children('input.recipe').val();
-            console.log(user,recipe);
-
-            $.ajax({
-                url:'traitment/traitementInsertFavorite.php',
-                method:'POST',
-                data:{
-                    user:user,
-                    recipe:recipe
-                }
-            })
-
-        }
-        else if($(this).hasClass("true")){
-            $(this).removeClass("true text-red-600 hover:text-gray-400").addClass("false text-gray-400 hover:text-red-600")
-            var user=$(this).children('input.user').val();
-            var recipe=$(this).children('input.recipe').val();
-            console.log(user,recipe);
-            $.ajax({
-                url:'traitment/traitementDeleteFavorite.php',
-                method:'POST',
-                data:{
-                    user:user,
-                    recipe:recipe
-                }
-            })
-        }
-    })
-</script>
 <?php  ?>
 <script>
-/*    $('#search').keyup(function(){
-        var name=$('#search').val();
-        console.log(name)
-      $.ajax({
-            url:'searchList.php',
-            method:'POST',
+$(document).ready(function(){
+    $('#search').keyup(function(){
+        var search=$('#search').val();
+        console.log(search);
+        $.ajax({
+            url:'traitment/search.php',
+            type:'POST',
             data:{
-                name:name,
+                search:search,
             },
-            success: $('#resultResearch').append(name)
+            success: function(data) {
+                console.log(data);
+                if (data != "") {
+                    $('#result-search').append(data);
+                } else {
+                    $('#result-search').html("<div style='font-size: 20px; text-align: center; margin-top: 10px'>Aucun utilisateur</div>")
+                }
+            }
         })
-    })*/
+    })
+})
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
