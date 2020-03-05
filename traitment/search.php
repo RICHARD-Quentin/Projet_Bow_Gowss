@@ -5,10 +5,10 @@ include_once('../class/recipes.php');
 
 $bdd = connexion::connexionBdd();
 
-$term=$_POST['name'];
+$term=$_POST['search'];
 
-$req=$bdd->prepare("SELECT * FROM recipeingredient WHERE ingredient LIKE :term");
+$req=$bdd->prepare("SELECT * FROM recipe WHERE title LIKE :term");
 $req->execute(array(
    'term'=>'%'.$term.'%'
 ));
-return $req->fetchAll();
+$req->fetchAll();
