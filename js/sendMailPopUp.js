@@ -11,7 +11,7 @@ $(document).ready(function(){
         }
 
         $(document).click(function(event) {
-            if(!$(event.target).closest('#sendMail').length){
+            if(!$(event.target).closest('#formSendMail').length){
                 // le clic est en dehors de #element
                 $('#formSendMail').addClass("hidden");
             }
