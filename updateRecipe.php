@@ -38,35 +38,35 @@ $bdd = connexion::connexionBdd();
 <main>
     <!-- Formulaire d'inscription de recette -->
     <form action= "traitment/traitementUpdateRecipe.php" enctype="multipart/form-data" method="post" class="flex w-full">
-        <div class="mx-auto border-gray-500 w-2/3 flex-col shadow-lg my-6 rounded">
+        <div class="mx-auto border-gray-500 px-1 md:w-2/3 flex-col shadow-lg my-6 rounded">
             <input type="hidden" value="<?php echo $id;?>" name=id>
             <div class="w-full inline-block mx-auto">
                 <div class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Titre</label>
+                    <label class="inline-block w-1/3 ">Titre</label>
                     <input type="text" name="title" class="w-1/2 border rounded border-gray-500" value="<?php echo $cont['title']; ?>">
                 </div>
                 <div class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Image</label>
+                    <label class="inline-block w-1/3 ">Image</label>
                     <input type="file" name="myImage" class="w-1/2 border rounded border-gray-500" value="<?php echo $cont['image']; ?>">
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Durée de preparation</label>
+                    <label class="inline-block w-1/3 ">Durée de preparation</label>
                     <input type="number" min="0" name="duree" class="w-1/2 border rounded border-gray-500" value=<?php echo ($cont['duree']); ?>>
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Durée de cuisson</label>
+                    <label class="inline-block w-1/3 ">Durée de cuisson</label>
                     <input type="number" min="0" name="cuisson" class="w-1/2 border rounded border-gray-500" value=<?php echo ($cont['cuisson']); ?>>
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Vegan</label>
+                    <label class="inline-block w-1/3 ">Vegan</label>
                     <input type="checkbox" name="isVegan" class="w-1/2 border rounded border-gray-500 w-12">
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3 ">Nombre de personnes</label>
+                    <label class="inline-block w-1/3 ">Nombre de personnes</label>
                     <input type="number" min="0" name="persons" class="w-1/2 border rounded border-gray-500 w-12 text-center" value=<?php echo $cont['persons']; ?>>
                 </div>
                 <div  class="mb-2">
-                    <label class="inline-block text-center w-1/3">Contenu</label>
+                    <label class="inline-block w-1/3">Contenu</label>
                     <textarea name="content" class="w-1/2 border rounded border-gray-500" ><?php echo $cont['content']; ?></textarea>
                 </div>
             </div>
@@ -75,26 +75,28 @@ $bdd = connexion::connexionBdd();
                 <label>Ingredients</label><br>
                 <ul id="ingredientList" class="mb-2">
                     <?php foreach ($ingredients as $ingredient){ ?>
-                    <div>
+                    <div class="">
                         <input class="ingId" type="hidden" value="<?php echo $ingredient->id ?>" name="ingId[]">
-                        <li class="ingredient relative list-none flex-row">
-                            <div class="inline-block w-1/3">
+                        <li class="ingredient inline-block relative list-none flex flex-col border-b border-gray-400 md:flex-row w-2/3 mx-auto">
+                            <div class="inline-block md:w-1/3 flex flex-col mx-1">
                                 <label>Ingredient :</label>
                                 <input type="text" class="ing border border-gray-500" value='<?php echo $ingredient->ingredient ?>' name="ing[]">
                             </div>
-                            <div class="inline-block w-1/3">
+                            <div class="inline-block md:w-1/3 flex flex-col mx-1">
                                 <label for="">Qté</label>
                                 <input type="text" class="qte border border-gray-500" value="<?php if ((int)$ingredient->quantity!=0) echo (int)$ingredient->quantity ?>" name="qte[]">
-
-                                <select class="unit border border-gray-500" name="unit[]" value="<?php echo $ingredient->unity ?>">
+                            </div>
+                            <div class="inline-block flex flex-col md:w-1/6 mx-1">
+                                <label>Unité :</label>
+                                <select class="unit inline-block border border-gray-500 align-bottom mb-1" name="unit[]" value="<?php echo $ingredient->unity ?>">
                                     <option value=" ">unité</option>
                                     <option value="g">g</option>
                                     <option value="cl">cl</option>
                                 </select>
                             </div>
-                            <span class="removeButton absolute top-0 right-10 bottom-0">
-                                <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                            </span>
+                                <span class="removeButton absolute right-0 top-0 md:inset-y-auto">
+                                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                </span>
                         </li>
                     </div>
                     <?php } ?>
@@ -111,13 +113,13 @@ $bdd = connexion::connexionBdd();
                         foreach ($stps as $stp){ ?>
                         <div>
                             <input class="stepId" type="hidden" value="<?php echo $stp->id ?>" name="stepId[]">
-                            <li class="step relative list-none">
-                                <div>
-                                    <label class="inline my-auto">Etape <span class="i"><?php echo $i; $i++ ?></span> : </label><textarea type="text" class="step border border-gray-500" cols="100" name="step[]"><?php echo $stp->steps ?></textarea>
+                            <li class="step list-none flex flex-row md:w-2/3 inline-block mx-auto relative">
+                                <div class="h-auto my-2">
+                                    <label class="inline-block m-auto align-middle">Etape <span class="i"><?php echo $i; $i++ ?></span> : </label><textarea type="text" class="step border border-gray-500 align-middle w-5/6" cols="100" name="step[]"><?php echo $stp->steps ?></textarea>
                                 </div>
-                                <span class="removeButton absolute top-0 right-0 bottom-0">
-                                    <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                                </span>
+                                <div class="removeButton absolute right-0">
+                                    <svg  class="align-bottom m-auto fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                </div>
                             </li>
                         </div>
                         <?php } ?>
@@ -135,41 +137,44 @@ $bdd = connexion::connexionBdd();
 <script>
     //Script qui ajoute un ingredient quand on clique sur le bouton
     $('#addIngredientButton').click(function(e){
-        var $clone=`<li class="newIngredient relative list-none flex-row">
-            <div class="inline-block w-1/3">
-                <label>Ingredient :</label>
-                <input type="text" class="newIng border border-gray-500" value=' ' name="newIng[]">
-            </div>
-            <div class="inline-block w-1/3">
-                <label for="">Qté</label>
-                <input type="text" value=' ' class="newQte border border-gray-500" name="newQte[]">
+        var $clone=`
 
-                <select class="unit border border-gray-500" name="newUnit[]">
-                <option value=" ">unité</option>
-                <option value="g">g</option>
-                <option value="cl">cl</option>
-                </select>
-            </div>
+                        <li class="newIngredient inline-block relative list-none flex flex-col border-b border-gray-400 md:flex-row w-2/3 mx-auto">
+                            <div class="inline-block md:w-1/3 flex flex-col mx-1">
+                                <label>Ingredient :</label>
+                                <input type="text" class="ing border border-gray-500" value='' name="newIng[]">
+                            </div>
+                            <div class="inline-block md:w-1/3 flex flex-col mx-1">
+                                <label for="">Qté</label>
+                                <input type="text" class="qte border border-gray-500" value="" name="newQte[]">
+                            </div>
+                            <div class="inline-block flex flex-col md:w-1/6 mx-1">
+                                <label>Unité :</label>
+                                <select class="unit inline-block border border-gray-500 align-bottom mb-1" name="newUnit[]" value="">
+                                    <option value=" ">unité</option>
+                                    <option value="g">g</option>
+                                    <option value="cl">cl</option>
+                                </select>
+                            </div>
+                                <span class="removeButton absolute right-0 md:bottom-0 top-0">
+                                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                </span>
+                        </li>
 
-
-                <span class="removeButton absolute top-0 right-0 bottom-0">
-                    <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                </span>
-</li>`;
+`;
         $('#ingredientList').append($clone)
     });
     //Script qui ajoute une etape quand on clique sur le bouton
 
     $('#addStepButton').click(function(){
         var $clone=
-            `<li class="newStep relative list-none">
-            <div>
-            <label class="inline my-auto">Etape <span class="i"></span> : </label><textarea type="text" class="border border-gray-500" cols="100" name="newStep[]"></textarea>
-            </div>
-            <span class="removeButton absolute top-0 right-0 bottom-0">
-            <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-            </span>
-
+            `<li class="newStep list-none flex flex-row w-2/3 inline-block mx-auto relative">
+                <div class="h-auto my-2">
+                    <label class="inline-block m-auto align-middle">Etape <span class="i"></span> : </label><textarea type="text" class="newStep border border-gray-500 align-middle" cols="100" name="newStep[]"></textarea>
+                </div>
+                <span class="removeButton inline-block align-middle absolute right-0 bottom-0">
+                    <svg  class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Supprimer</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>
             </li>`;
 
         $('#stepList').append($clone);
@@ -185,13 +190,13 @@ $bdd = connexion::connexionBdd();
         if($(this).parent().hasClass('ingredient')){
             $(this).parent().addClass('hidden');
             $(this).parent().siblings('.ingId').attr({name:'delIngId[]'});
-            $(this).siblings('div').children('.ing').attr({name:'delIng[]'});
-            $(this).siblings('div').children('.qte').attr({name:'delQte[]'});
-            $(this).siblings('div').children('.unit').attr({name:'delUnit[]'});
+            $(this).siblings().children('.ing').attr({name:'delIng[]'});
+            $(this).siblings().children('.qte').attr({name:'delQte[]'});
+            $(this).siblings().children('.unit').attr({name:'delUnit[]'});
         }
         else if($(this).parent().hasClass('step')){
-            $(this).parent().addClass('hidden');
-            $(this).parent().siblings('.stepId').attr({name:'delStepId[]'});
+            $(this).parent('li').addClass('hidden');
+            $(this).parent('li').siblings('.stepId').attr({name:'delStepId[]'});
             $(this).siblings('div').children('.step').attr({name:'delStep[]'});
             $(this).siblings('div').children('label').children('.i').removeClass('i');
         }
