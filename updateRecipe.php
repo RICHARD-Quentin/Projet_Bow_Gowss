@@ -38,7 +38,7 @@ $bdd = connexion::connexionBdd();
 <main>
     <!-- Formulaire d'inscription de recette -->
     <form action= "traitment/traitementUpdateRecipe.php" enctype="multipart/form-data" method="post" class="flex w-full">
-        <div class="mx-auto border-gray-500 px-1 md:w-2/3 flex-col shadow-lg my-6 rounded">
+        <div class="mx-auto border-gray-500 px-1 w-11/12 lg:w-2/3 flex-col shadow-lg my-6 rounded">
             <input type="hidden" value="<?php echo $id;?>" name=id>
             <div class="w-full inline-block mx-auto">
                 <div class="mb-2">
@@ -116,7 +116,7 @@ $bdd = connexion::connexionBdd();
                         </div>
                         <?php } ?>
 
-                    </ul>required
+                    </ul>
                     <span id="addStepButton" class="border border-gray-500 rounded bg-gray-300 p-1">Ajouter une étape</span>
 
                 </div>

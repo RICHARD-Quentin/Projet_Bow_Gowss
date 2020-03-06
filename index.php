@@ -47,7 +47,7 @@ $list = $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
 ?>
-            <div class="mx-4 inline-block md:w-1/3 mb-2 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl ">
+            <div class="px-4 md:mx-4 lg:mx-0 inline-block md:w-5/12 lg:w-1/3 mb-2 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl ">
                 <?php if(isset($_SESSION['id_session'])) { ?>
                 <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-4"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
                 <?php } ?>
