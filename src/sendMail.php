@@ -6,7 +6,6 @@ require('../lib/PHPMailer/src/SMTP.php');
 require('../lib/PHPMailer/src/PHPMailer.php');
 require('../lib/PHPMailer/src/OAuth.php');
 require('../lib/PHPMailer/src/Exception.php');
-
 require('../src/getCurrentURL.php');
 require_once('../lib/PHPMailer/composer/ClassLoader.php');
 ?>
@@ -14,6 +13,7 @@ require_once('../lib/PHPMailer/composer/ClassLoader.php');
 <?php
 function sendTheMail()
 {
+
     $mail = new PHPMailer(true);
 
     try {
@@ -39,15 +39,17 @@ function sendTheMail()
         $mail->Body = utf8_decode($_POST['contentInMail']."<br><br>Votre site de cuisine préféré: ". $lien ."<br><br>Bon appétit!");
 
         if (!$mail->send()) {
-            echo 'Un problème est survenu.';
+            echo 'Un problème est survenu. \n';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-            echo 'Le message a bien été envoyé';
+            echo 'Le message a bien été envoyé. </br> Redirection dans 3 secondes.';
         }
     } catch (Exception $e) {
-        echo 'Un problème est survenu.';
+        echo 'Un problème est survenu. \n';
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }
+    $leLien=$_GET['link'];
+    header ("Refresh: 3; URL=$leLien");      //header ("Refresh: 3;URL=PROJET_WEB/Projet_Bow_Gowss");
 }
 
 sendTheMail();
