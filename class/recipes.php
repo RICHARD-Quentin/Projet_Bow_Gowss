@@ -16,12 +16,12 @@ class recipes
         return $recipeImagePath;
     }
 
-    public static function register($title, $content, $duree, $cuisson, $image, $persons, $isVegan, $user_id, $ingredients, $step)
+    public static function register($title, $content, $duree, $cuisson, $image, $persons, $user_id, $ingredients, $step)
     {
 
         $bdd = connexion::connexionBdd();
 
-        $reg = $bdd->prepare('INSERT INTO recipe (title, content, image, duree, cuisson, persons, isVegan, user_id) VALUES (:title, :content, :image, :duree, :cuisson, :persons, :isVegan, :user_id)');
+        $reg = $bdd->prepare('INSERT INTO recipe (title, content, image, duree, cuisson, persons, user_id) VALUES (:title, :content, :image, :duree, :cuisson, :persons, :user_id)');
         $reg->execute(array(
             'title'=>$title,
             'content'=>$content,
@@ -29,7 +29,6 @@ class recipes
             'duree'=>$duree,
             'cuisson'=>$cuisson,
             'persons'=>$persons,
-            'isVegan'=>$isVegan,
             'user_id'=>$user_id
         ));
         $id = $bdd->lastInsertId();
@@ -49,10 +48,9 @@ class recipes
         $stp = $bdd->prepare('INSERT INTO recipesteps(recipe, steps) VALUES (:recipe, :steps)');
         $stp->execute(array(
             'recipe'=>$id,
-            'steps'=>$steps
+            'steps'=>$steps['step']
         ));
         }
-        header('index.php');
     }
 
     public static function update($recipeId, $title, $content, $duree, $cuisson, $persons, $updateIngredientTable, $newIngredientTable, $delIngredientTable,$updateStepTable, $newStepTable, $delStepTable)
@@ -123,6 +121,7 @@ class recipes
         $bdd = connexion::connexionBdd();
         $del = $bdd->prepare('DELETE FROM recipe WHERE id=:id');
         $del-> execute(array("id"=>$id));
+        $del->debugDumpParams();
     }
     public static function timeConvert($time){
         $hPrep=intdiv($time,60);
