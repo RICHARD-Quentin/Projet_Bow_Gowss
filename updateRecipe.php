@@ -5,7 +5,7 @@ $bdd = connexion::connexionBdd();
 
 $id=intval($_GET['id']);
 
-$content=$bdd->prepare("SELECT * FROM recipe WHERE id=:id");
+$content=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id WHERE recipe.id=:id");
 $content->execute(array("id"=>$id));
 
 $ing=$bdd->prepare("SELECT * FROM recipeingredient WHERE recipe=:id");
@@ -31,8 +31,8 @@ $bdd = connexion::connexionBdd();
 <body>
 <?php include("template/nav.php"); ?>
 <?php include("template/hero.php"); ?>
-<?php if(isset($_SESSION['id_session'],$_SESSION['nickname']) && $_SESSION['id_session']==$cont['user_id']) {
-
+<?php if(isset($_SESSION['id_session'],$_SESSION['nickname'])) {
+    if($_SESSION['id_session']==$cont['user_id'] || $_SESSION['is_admin']==1) {
 
 ?>
 <main>

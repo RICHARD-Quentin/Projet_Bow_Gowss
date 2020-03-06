@@ -1,13 +1,13 @@
 <?php
 
-include_once('../class/recipes.php');
-include_once('../src/valid_data.php');
+include_once('class/recipes.php');
+include_once('src/valid_data.php');
 
-$term=valid_data($_POST['search']);
+$term=valid_donnees($_POST['search']);
 
     $bdd = connexion::connexionBdd();
 
-    $req=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id WHERE title LIKE :term");
+    $req=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id WHERE recipe.title LIKE :term");
     $req->execute(array(
         'term'=>'%'.$term.'%'
     ));
@@ -16,7 +16,7 @@ $term=valid_data($_POST['search']);
 
 
 include("template/setup.php");
-include_once ('class/connexion.php');
+include_once('class/connexion.php');
 include_once('class/recipes.php');
 
 ?>
