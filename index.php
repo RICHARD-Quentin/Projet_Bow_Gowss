@@ -49,7 +49,7 @@ $list = $stmt->fetchAll(PDO::FETCH_CLASS);
 ?>
             <div class="px-4 md:mx-4 lg:mx-0 inline-block md:w-5/12 lg:w-1/3 mb-2 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl ">
                 <?php if(isset($_SESSION['id_session'])) { ?>
-                <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 mt-2 mr-6"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
+                <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-4"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
                 <?php } ?>
                 <a href="recipeTemplate.php?id=<?php echo $lst->id ?>">
                     <img class="w-full h-64" src="<?php echo $lst->image ?>" alt="Sunset in the mountains">
@@ -61,10 +61,10 @@ $list = $stmt->fetchAll(PDO::FETCH_CLASS);
                             <?php echo $lst->content;?>
                         </p>
                     </div>
-                    <div class="px-6 py-4">
-                        <span class="my-1 mx-auto inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Nombre de  <?php if($lst->persons==1) echo 'personne : '. $lst->persons; else echo 'personnes : '. $lst->persons ?></span>
-                        <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preparation : <?php echo recipes::timeConvert($lst->duree);?></span>
-                        <span class="my-1 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisson : <?php echo recipes::timeConvert($lst->cuisson);?></span>
+                    <div class="px-1 py-4 flex flex-col mx-auto">
+                        <span class="my-1 w-3/4 mx-auto text-center inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Nombre de  <?php if($lst->persons==1) echo 'personne : '. $lst->persons; else echo 'personnes : '. $lst->persons ?></span>
+                        <span class="my-1 w-3/4 mx-auto text-center inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Preparation : <?php echo recipes::timeConvert($lst->duree);?></span>
+                        <span class="my-1 w-3/4 mx-auto text-center inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Cuisson : <?php echo recipes::timeConvert($lst->cuisson);?></span>
                     </div>
                 </a>
             </div>
