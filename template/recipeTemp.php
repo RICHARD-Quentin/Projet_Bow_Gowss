@@ -66,7 +66,7 @@ if(isset($_SESSION['id_session'])){
                     <?php
 
                     foreach ($ing as $ingr) {
-                        echo '<li>' . $ingr->ingredient . ' : ' . $ingr->quantity . '<br>';
+                        echo '<li>' . $ingr->ingredient. ' ' . $ingr->quantity .' ' . $ingr->unity . '<br>';
 
                     } ?>
                 </ul>

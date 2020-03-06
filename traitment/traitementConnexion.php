@@ -6,24 +6,36 @@ try {
     die('Erreur : ' .$e->getMessage());
 }
 
+//fonction pour sécuriser les données utilisateurs coté serveur
+function valid_donnees($donnees){
+    $donnees = trim($donnees);
+    $donnees = stripslashes($donnees);
+    $donnees = htmlspecialchars($donnees);
+    return $donnees;
+}
+
+$emailConnexionPost = valid_donnees($_POST['emailConnexion']);
+$passConnexionPost= valid_donnees($_POST['passConnexion']);
 
 //  Récupération de l'utilisateur et de son pass hashé
 $req = $bdd->prepare('SELECT * FROM user WHERE email = :email');
 
 
 $req->execute(array(
-    'email' => $_POST['emailConnexion']));
+    'email' => $emailConnexionPost));
 
 $resultat = $req->fetch();
 $nickname = $resultat['nickname'];
 
 // Comparaison du pass envoyé via le formulaire avec la base
-$isPasswordCorrect = password_verify($_POST['passConnexion'], $resultat['password']);
+$isPasswordCorrect = password_verify($passConnexionPost, $resultat['password']);
 
 
 //  Récupération ID admin ou non de l'utilisateur
 
 $isAdmin = $resultat['isAdmin'];
+
+
 
 
 if (!$resultat)

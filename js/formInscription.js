@@ -4,6 +4,7 @@ $(document).ready(function(){
         email = $('#emailInscription'),
         password = $('#passInscription'),
         passwordConfirm = $('#passInscriptionConfirm'),
+        regexPseudo = /^([a-zA-Z ]+)$/ ,
         regexMail = /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/;
         // envoyer = $('#envoyerConnexion');
 
@@ -16,16 +17,16 @@ $(document).ready(function(){
 
     function verifUsername(){
 
-        if($(this).val().length < 5){
-            $(this).removeClass("border-2 border-green-500 border-gray-200 border");
-            $(this).addClass("border-2 border-red-500");
-            $(this).next().removeClass("hidden");
-
-        }
-        else{
+        if(regexPseudo.test(this.value)&&($(this).val().length >= 5)){
             $(this).removeClass("border-2 border-red-500 border-gray-200 border");
             $(this).addClass("border-2 border-green-500");
             $(this).next().addClass("hidden");
+
+        }
+        else{
+            $(this).removeClass("border-2 border-green-500 border-gray-200 border");
+            $(this).addClass("border-2 border-red-500");
+            $(this).next().removeClass("hidden");
         }
     };
 
@@ -47,7 +48,7 @@ $(document).ready(function(){
 
     function verifPassword(){
 
-        if($(this).val().length < 5){
+        if($(this).val().length <= 5){
             $(this).removeClass("border-2 border-green-500 border-gray-200 border");
             $(this).addClass("border-2 border-red-500");
             $(this).next().removeClass("hidden");
