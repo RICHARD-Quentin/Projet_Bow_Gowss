@@ -1,10 +1,9 @@
 $(document).ready(function(){
         var btnSendMail = $('#btnSendMail');
         var formSendMail = $('#formSendMail');
-        var btnClose = $('#closeBtn');
+
 
         btnSendMail.click(popSendMail);
-        btnClose.click(unPopSendMail);
 
         function popSendMail(event) {
             formSendMail.removeClass("hidden");

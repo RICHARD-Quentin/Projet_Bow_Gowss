@@ -33,7 +33,7 @@ foreach ($list as $lst) {
                 <div class=" absolute right-0 top-0">
 
 
-                    <a href="src/generatePDF.php?id=<?php echo $lst->id ?>">
+                    <a href="src/generatePDF.php?id=<?php echo $lst->id ?>" target="_blank">
                         <i class="far fa-file-pdf px-3 text-red-600 hover:text-blue-800" id="generatePDF"></i>
                     </a>
 
