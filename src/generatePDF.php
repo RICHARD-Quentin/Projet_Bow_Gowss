@@ -4,8 +4,10 @@ include("../template/setup.php");
 require('../lib/fPDF/fPDF.php');
 require('../src/getCurrentURL.php');
 include("../class/recipes.php");
+include("../src/valid_data.php");
 
 $id=intval($_GET['id']);    //get id recipe
+$id=valid_donnees($id);     //sécur valid_data
 $pdf = new FPDF();
 $bdd = connexion::connexionBdd();
 $stmt = $bdd->prepare("SELECT recipe.id, title, content, duree, cuisson, persons, image FROM recipe WHERE id=:id;");
