@@ -34,6 +34,12 @@ if (isset($_SESSION['is_admin']) AND ($_SESSION['is_admin'] == 1)){
 <p><i class=\"fas fa-book-medical fa-fw mr-1\"></i>Nbr total de recettes à approuver</p>
 </div>";
 }
+
+//    $reponse= $bdd->query('SELECT id, nickname, email, isAdmin FROM USER'');
+    
+    
+
+
 ?>
 
 <?php include("template/mentionsLegales.php"); ?>
