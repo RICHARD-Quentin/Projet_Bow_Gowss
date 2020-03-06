@@ -3,14 +3,14 @@ if (isset($_SESSION['nickname']) AND (isset($_SESSION['id_session']))){
 }
 ?>
 
-<nav class="flex items-center justify-between flex-wrap bg-green-400 p-6 sticky top-0 z-10">
+<nav class="flex items-center relative justify-between flex-wrap bg-green-400 p-6 sticky top-0 z-20">
     <a href="index.php">
         <div href="index.php" class="flex items-center flex-shrink-0 text-white mr-6">
         <i class="fas fa-carrot fa-fw fa-2x mr-1 text-orange-400"></i>
         <span  class="font-semibold text-xl tracking-tight">Les recettes du developpeur</span>
         </div>
     </a>
-    <div class="block lg:hidden">
+    <div class="block absolute right-0 bottom-0 top-0 my-8 mr-5 lg:hidden">
         <button class="flex items-center  rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
             <i id="btnHamburger" class="m-1 fas fa-hamburger"></i>
         </button>

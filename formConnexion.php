@@ -1,7 +1,7 @@
 <?php
 ?>
 
-<div id="divFormConnexion" class="z-10 hidden fixed inset-0 w-full max-w-xs container mx-auto">
+<div id="divFormConnexion" class="z-30 hidden fixed inset-0 w-full max-w-xs container mx-auto">
     <form action="traitment/traitementConnexion.php" method="post"
           class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h3 class="block text-gray-700 text-sm font-bold mb-2">Connexion</h3>

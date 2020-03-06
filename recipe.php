@@ -19,7 +19,7 @@ $bdd = connexion::connexionBdd();
 <main>
     <!-- Formulaire d'inscription de recette -->
     <form action= "traitment/traitementRecipe.php" enctype="multipart/form-data" method="post" class="flex w-full">
-        <div class="mx-auto border-gray-500 w-2/3 flex-col shadow-lg my-6 rounded">
+        <div class="mx-auto border-gray-500 w-11/12 lg:w-2/3 flex-col shadow-lg my-6 rounded">
             <div class="w-full inline-block mx-auto">
                 <div class="mb-2">
                     <label class="inline-block text-center w-1/3 ">Titre</label>
