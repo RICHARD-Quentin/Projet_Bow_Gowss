@@ -19,7 +19,7 @@ foreach ($listRecipe as $lst) {
     $BDDPreparation = $lst->duree;
     $BDDCuisson = $lst->cuisson;
 }
-//var_dump($list);
+//var_dump($lst);
 
 
 $pdf->AddPage();
@@ -54,7 +54,7 @@ $pdf->Text(170,105,"Cuisson: $cookTime"); //$BDDCuisson (5)
 $pdf->Text(150,97,"Temps total: $tempsTotal"); //$BDDCuisson (5)
 
 
-$stmt = $bdd->prepare("SELECT * FROM recipeingredient WHERE recipe=:id");
+$stmt = $bdd->prepare("SELECT * FROM recipeingredient WHERE recipe=:id ORDER BY unity DESC");
 $stmt->execute(array('id' => $id));
 $listIngredient=$stmt->fetchAll(PDO::FETCH_CLASS);
 $y=120;
@@ -96,12 +96,17 @@ $pdf->Link(10, 30, 87, 58,"../index.php");
 $pdf->SetFont('Arial','B',8 );      // font
 $link=getCurrentURL();
 $pdf->Text(5,295,utf8_decode("$link")); //(8)
-$pdf->Text(150,5,utf8_decode("Recette proposée par ")); //(8)
+
+
+$stmt = $bdd->prepare("SELECT user_id, nickname FROM recipe rec INNER JOIN user us ON rec.user_id=us.id WHERE rec.id=:id");
+$stmt->execute(array('id' => $id));
+$recupeNickname=$stmt->fetchAll(PDO::FETCH_CLASS);
+
+foreach ($recupeNickname as $lst)
+{
+    $BDDNickname = $lst->nickname;
+}
+
+$pdf->Text(165,5,utf8_decode("Recette proposée par $BDDNickname")); //(8)
 $pdf->Output("","Les recettes du Developpeur - $BDDContent.pdf"); //recipe.content
-
-
-
-
-
-
 
