@@ -19,7 +19,8 @@ $bdd = connexion::connexionBdd();
 <?php include("formInscription.php"); ?>
 
 <main>
-<div class="flex flex-row flex-wrap w-11/12 mx-auto my-4 min-h-screen">
+    <div class="min-h-screen">
+<div class="flex flex-row flex-wrap w-11/12 mx-auto my-4">
 
 <?php include("src/formSendMail.php"); ?>
 
@@ -68,6 +69,7 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 
 <?php } ?>
 </div>
+    </div>
 </main>
 <?php include("template/footer.php"); ?>
 
