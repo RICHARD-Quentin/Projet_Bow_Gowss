@@ -18,7 +18,7 @@ $bdd = connexion::connexionBdd();
 <?php
 $id=intval($_GET['id']);
 
-$stmt=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id WHERE recipe.id=:id");
+$stmt=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname, isAdmin FROM recipe INNER JOIN user ON recipe.user_id=user.id WHERE recipe.id=:id");
 $stmt->execute(array("id"=>$id));
 $list=$stmt->fetchAll(PDO::FETCH_CLASS); ?>
 

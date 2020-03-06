@@ -24,7 +24,7 @@ $bdd = connexion::connexionBdd();
 <?php include("src/formSendMail.php"); ?>
 
 <?php
-$stmt=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, isVegan, user_id, nickname FROM recipe INNER JOIN favorite ON recipe.id = favorite.recipe INNER JOIN user ON recipe.user_id = user.id WHERE favorite.user = :user_id");
+$stmt=$bdd->prepare("SELECT recipe.id, title, content, image, duree, cuisson, persons, user_id, nickname FROM recipe INNER JOIN favorite ON recipe.id = favorite.recipe INNER JOIN user ON recipe.user_id = user.id WHERE favorite.user = :user_id");
 $stmt->execute(array('user_id'=>$_SESSION['id_session']));
 $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 
@@ -47,11 +47,11 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
             $isFavoriteClass="false text-gray-400 hover:text-red-600";
         }
 ?>
-        <div class="mx-4 inline-block mb-2 md:w-1/2 lg:w-1/3 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl">
+        <div class="mx-4 inline-block mb-2 md:w-1/2 lg:w-1/3 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl">
+            <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-4"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
             <a href="recipeTemplate.php?id=<?php echo $lst->id ?>">
                 <img class="w-full h-64" src="<?php echo $lst->image ?>" alt="Sunset in the mountains">
                 <div class="px-6 py-4 relative">
-                    <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-1"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
                     <div class="font-bold text-xl mb-2"><?php echo $lst->title ?></div>
                     <p>Par <?php echo $lst->nickname ?></p>
                     <p class="text-gray-700 text-base">
@@ -70,7 +70,6 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
 </div>
 </main>
 <?php include("template/footer.php"); ?>
-<?php include("template/js.php"); ?>
 
 <script>
     $(document).on('click','#fav',function(){
@@ -88,6 +87,24 @@ $list=$stmt->fetchAll(PDO::FETCH_CLASS);
                     recipe:recipe
                 }
             })
+
+        }
+        else if($(this).hasClass("true")){
+            $(this).removeClass("true text-red-600 hover:text-gray-400").addClass("false text-gray-400 hover:text-red-600")
+            var user=$(this).children('input.user').val();
+            var recipe=$(this).children('input.recipe').val();
+            console.log(user,recipe);
+            $.ajax({
+                url:'traitment/traitementDeleteFavorite.php',
+                method:'POST',
+                data:{
+                    user:user,
+                    recipe:recipe
+                }
+            })
+        }
+    })
+</script>
 
 </body>
 

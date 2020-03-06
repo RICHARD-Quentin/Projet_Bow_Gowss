@@ -2,7 +2,7 @@
 session_start();
 setcookie('accord', '');
 
-//demande d'accord des cookies au démarage
+/*//demande d'accord des cookies au démarage
 //si la variable cookie est deja renseigné alors ne pas re-demander l'accord
 if (!isset($_SESSION['nickname']) AND (!isset($_SESSION['id_session']))){
     if ($accord =!null){
@@ -20,6 +20,6 @@ if (!isset($_SESSION['nickname']) AND (!isset($_SESSION['id_session']))){
         </div>";
 
     }
-}
+}*/
 
 ?>
