@@ -50,9 +50,9 @@ $isFavoriteClass = "false text-gray-400 hover:text-red-600";
 }
 
 ?>
-<div class="mx-4 inline-block md:w-1/3 mb-2 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl ">
+<div class="px-4 mt-6 inline-block md:w-1/3 mb-2 max-w-sm rounded relative overflow-hidden shadow-lg hover:shadow-2xl ">
     <?php if(isset($_SESSION['id_session'])) { ?>
-        <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 m-4"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
+        <i id="fav" class="<?php echo $isFavoriteClass ?> fa-lg fas fa-heart absolute right-0 mt-2 mr-6"><input class="recipe" type="hidden" value="<?php echo $id ?>"><input class="user" type="hidden" value="<?php echo $_SESSION['id_session'] ?>"></i>
     <?php } ?>
     <a href="recipeTemplate.php?id=<?php echo $lst->id ?>">
         <img class="w-full h-64" src="<?php echo $lst->image ?>" alt="Sunset in the mountains">

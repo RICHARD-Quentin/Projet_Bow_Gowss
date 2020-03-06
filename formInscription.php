@@ -10,7 +10,7 @@
                 Username
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                   name="idInscription" id="idInscription" type="text" placeholder="Username">
+                   name="idInscription" id="idInscription" type="text" required placeholder="Username">
         </div>
 
         <div class="mb-4">
@@ -18,7 +18,7 @@
                 email
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                   name="emailInscription" id="emailInscription" type="text" placeholder="email">
+                   name="emailInscription" id="emailInscription" type="text" required placeholder="email">
         </div>
 
         <div class="mb-6">
@@ -26,7 +26,7 @@
                 Password
             </label>
             <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                   name="passInscription" id="passInscription" type="password" placeholder="******************">
+                   name="passInscription" id="passInscription" type="password" required placeholder="******************">
             <p class="text-red-500 text-xs italic">Please choose a password.</p>
         </div>
         <div class="mb-6">
@@ -34,7 +34,7 @@
                 Password confirm
             </label>
             <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                   name="passInscriptionConfirm" id="passInscriptionConfirm" type="password" placeholder="******************">
+                   name="passInscriptionConfirm" id="passInscriptionConfirm" type="password" required placeholder="******************">
             <p class="text-red-500 text-xs italic">Please confirm your password.</p>
         </div>
         <div class="flex items-center justify-between">
